@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, Building2 } from "lucide-react";
 
@@ -12,28 +12,54 @@ const navItems = [
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-md border-b border-border">
-      <div className="container mx-auto flex items-center justify-between h-16 px-4">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-card/95 backdrop-blur-lg border-b border-border shadow-sm"
+          : "bg-transparent border-b border-transparent"
+      }`}
+    >
+      <div className="container mx-auto flex items-center justify-between h-18 px-4 py-3">
         <Link to="/" className="flex items-center gap-2">
-          <Building2 className="h-8 w-8 text-accent" />
+          <Building2 className={`h-8 w-8 transition-colors duration-300 ${scrolled ? "text-accent" : "text-accent"}`} />
           <div>
-            <span className="text-xl font-display font-bold text-primary">Prospera</span>
-            <span className="block text-[10px] uppercase tracking-[0.2em] text-muted-foreground -mt-1">Imobiliária</span>
+            <span className={`text-xl font-display font-bold transition-colors duration-300 ${scrolled ? "text-primary" : "text-primary-foreground"}`}>
+              Prospera
+            </span>
+            <span className={`block text-[10px] uppercase tracking-[0.2em] -mt-1 transition-colors duration-300 ${scrolled ? "text-muted-foreground" : "text-primary-foreground/60"}`}>
+              Imobiliária
+            </span>
           </div>
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
-            <Link key={item.label} to={item.href} className="nav-link">
+            <Link
+              key={item.label}
+              to={item.href}
+              className={`text-sm font-medium transition-colors duration-200 hover:text-accent ${
+                scrolled ? "text-foreground" : "text-primary-foreground/90"
+              }`}
+            >
               {item.label}
             </Link>
           ))}
+          <Link to="/contato" className="btn-gold text-sm px-5 py-2.5">
+            Fale Conosco
+          </Link>
         </nav>
 
         <button
-          className="md:hidden text-foreground"
+          className={`md:hidden transition-colors ${scrolled ? "text-foreground" : "text-primary-foreground"}`}
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Menu"
         >
@@ -42,18 +68,16 @@ const Header = () => {
       </div>
 
       {isOpen && (
-        <div className="md:hidden bg-card border-b border-border">
+        <div className="md:hidden bg-card/95 backdrop-blur-lg border-b border-border">
           <nav className="flex flex-col px-4 py-4 gap-3">
             {navItems.map((item) => (
-              <Link
-                key={item.label}
-                to={item.href}
-                className="nav-link py-2"
-                onClick={() => setIsOpen(false)}
-              >
+              <Link key={item.label} to={item.href} className="nav-link py-2" onClick={() => setIsOpen(false)}>
                 {item.label}
               </Link>
             ))}
+            <Link to="/contato" className="btn-gold text-sm text-center mt-2" onClick={() => setIsOpen(false)}>
+              Fale Conosco
+            </Link>
           </nav>
         </div>
       )}
