@@ -1,4 +1,5 @@
 import { Home, Key, Building } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const services = [
   { icon: Home, title: "Compra e Venda", description: "Assessoria completa na compra e venda de imóveis residenciais e comerciais." },
@@ -7,14 +8,22 @@ const services = [
 ];
 
 const ServicesSection = () => {
+  const { ref, isVisible } = useScrollAnimation();
+
   return (
     <section className="py-20 bg-background">
-      <div className="container mx-auto px-4">
+      <div ref={ref} className="container mx-auto px-4">
         <h2 className="section-title mb-12 text-center">Nossos Serviços</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {services.map((s) => (
-            <div key={s.title} className="bg-card rounded-lg p-8 text-center transition-all duration-300 hover:-translate-y-1" style={{ boxShadow: "var(--shadow-card)" }}>
-              <div className="w-16 h-16 mx-auto mb-5 rounded-full bg-secondary flex items-center justify-center">
+          {services.map((s, i) => (
+            <div
+              key={s.title}
+              className={`bg-card rounded-xl p-8 text-center transition-all duration-500 border-2 border-transparent hover:border-accent hover:scale-[1.02] ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              }`}
+              style={{ boxShadow: "var(--shadow-card)", transitionDelay: `${i * 150}ms` }}
+            >
+              <div className="w-16 h-16 mx-auto mb-5 rounded-full flex items-center justify-center" style={{ background: "var(--gradient-gold)" }}>
                 <s.icon className="h-8 w-8 text-primary" />
               </div>
               <h3 className="font-display font-semibold text-lg text-foreground mb-3">{s.title}</h3>
