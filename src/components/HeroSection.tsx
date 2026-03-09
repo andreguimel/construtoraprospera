@@ -10,10 +10,6 @@ const HeroSection = () => {
       </div>
 
       <div className="relative container mx-auto px-4 py-24">
-        <div className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm border border-accent/30 rounded-full px-4 py-1.5 mb-6 animate-fade-in-up">
-          <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-          <span className="text-primary-foreground/90 text-sm font-medium">Mais de 500 imóveis disponíveis</span>
-        </div>
 
         <h1 className="text-4xl md:text-6xl font-display font-bold text-primary-foreground mb-4 max-w-2xl animate-fade-in-up leading-tight">
           Encontre o imóvel dos seus sonhos
