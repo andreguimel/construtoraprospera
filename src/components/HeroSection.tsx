@@ -29,10 +29,10 @@ const HeroSection = () => {
         >
           <select className="flex-1 px-4 py-3.5 rounded-lg bg-secondary text-foreground border border-border text-sm cursor-pointer">
             <option>Tipo do Imóvel</option>
-            <option>Apartamento</option>
             <option>Casa</option>
-            <option>Cobertura</option>
             <option>Terreno</option>
+            <option>Apartamento</option>
+            <option>Cobertura</option>
           </select>
           <select className="flex-1 px-4 py-3.5 rounded-lg bg-secondary text-foreground border border-border text-sm cursor-pointer">
             <option>Localização</option>

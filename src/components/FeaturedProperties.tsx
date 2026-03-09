@@ -7,29 +7,30 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 const properties = [
   {
     image: property1,
-    title: "Apartamento Luxuoso",
-    price: "R$ 950.000",
-    area: "350m²",
-    location: "Asa Sul, Brasília",
-    beds: 3, baths: 2, parking: 2,
+    title: "Casa Moderna com Jardim",
+    price: "R$ 1.850.000",
+    area: "420m²",
+    location: "Alphaville, SP",
+    beds: 4, baths: 3, parking: 3,
     badge: "Destaque",
   },
   {
     image: property2,
-    title: "Casa Moderna",
-    price: "R$ 1.500.000",
-    area: "250m²",
-    location: "Alphaville, SP",
-    beds: 4, baths: 3, parking: 3,
-    badge: "Novo",
+    title: "Terreno Residencial",
+    price: "R$ 450.000",
+    area: "600m²",
+    location: "Condomínio Fechado, Campinas",
+    beds: 0, baths: 0, parking: 0,
+    badge: "Oportunidade",
+    isTerrain: true,
   },
   {
     image: property3,
-    title: "Cobertura Exclusiva",
-    price: "R$ 2.300.000",
-    area: "450m²",
-    location: "Leblon, RJ",
-    beds: 5, baths: 4, parking: 2,
+    title: "Casa com Piscina",
+    price: "R$ 2.200.000",
+    area: "380m²",
+    location: "Barra da Tijuca, RJ",
+    beds: 5, baths: 4, parking: 3,
     badge: "Exclusivo",
   },
 ];
@@ -66,11 +67,17 @@ const FeaturedProperties = () => {
                   <span className="flex items-center gap-1"><MapPin className="h-3.5 w-3.5" />{p.location}</span>
                   <span className="flex items-center gap-1"><Maximize2 className="h-3.5 w-3.5" />{p.area}</span>
                 </div>
-                <div className="flex items-center gap-4 mt-2 text-muted-foreground text-xs border-t border-border pt-3">
-                  <span className="flex items-center gap-1"><BedDouble className="h-3.5 w-3.5" />{p.beds} quartos</span>
-                  <span className="flex items-center gap-1"><Bath className="h-3.5 w-3.5" />{p.baths} banhos</span>
-                  <span className="flex items-center gap-1"><Car className="h-3.5 w-3.5" />{p.parking} vagas</span>
-                </div>
+                {!p.isTerrain ? (
+                  <div className="flex items-center gap-4 mt-2 text-muted-foreground text-xs border-t border-border pt-3">
+                    <span className="flex items-center gap-1"><BedDouble className="h-3.5 w-3.5" />{p.beds} quartos</span>
+                    <span className="flex items-center gap-1"><Bath className="h-3.5 w-3.5" />{p.baths} banhos</span>
+                    <span className="flex items-center gap-1"><Car className="h-3.5 w-3.5" />{p.parking} vagas</span>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-4 mt-2 text-muted-foreground text-xs border-t border-border pt-3">
+                    <span className="flex items-center gap-1"><Maximize2 className="h-3.5 w-3.5" />Pronto para construir</span>
+                  </div>
+                )}
                 <button className="w-full mt-4 py-2.5 rounded-lg border border-accent text-accent text-sm font-semibold transition-all duration-300 hover:bg-accent hover:text-accent-foreground">
                   Ver Detalhes
                 </button>
