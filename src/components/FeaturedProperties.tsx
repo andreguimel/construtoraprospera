@@ -67,11 +67,17 @@ const FeaturedProperties = () => {
                   <span className="flex items-center gap-1"><MapPin className="h-3.5 w-3.5" />{p.location}</span>
                   <span className="flex items-center gap-1"><Maximize2 className="h-3.5 w-3.5" />{p.area}</span>
                 </div>
-                <div className="flex items-center gap-4 mt-2 text-muted-foreground text-xs border-t border-border pt-3">
-                  <span className="flex items-center gap-1"><BedDouble className="h-3.5 w-3.5" />{p.beds} quartos</span>
-                  <span className="flex items-center gap-1"><Bath className="h-3.5 w-3.5" />{p.baths} banhos</span>
-                  <span className="flex items-center gap-1"><Car className="h-3.5 w-3.5" />{p.parking} vagas</span>
-                </div>
+                {!p.isTerrain ? (
+                  <div className="flex items-center gap-4 mt-2 text-muted-foreground text-xs border-t border-border pt-3">
+                    <span className="flex items-center gap-1"><BedDouble className="h-3.5 w-3.5" />{p.beds} quartos</span>
+                    <span className="flex items-center gap-1"><Bath className="h-3.5 w-3.5" />{p.baths} banhos</span>
+                    <span className="flex items-center gap-1"><Car className="h-3.5 w-3.5" />{p.parking} vagas</span>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-4 mt-2 text-muted-foreground text-xs border-t border-border pt-3">
+                    <span className="flex items-center gap-1"><Maximize2 className="h-3.5 w-3.5" />Pronto para construir</span>
+                  </div>
+                )}
                 <button className="w-full mt-4 py-2.5 rounded-lg border border-accent text-accent text-sm font-semibold transition-all duration-300 hover:bg-accent hover:text-accent-foreground">
                   Ver Detalhes
                 </button>
