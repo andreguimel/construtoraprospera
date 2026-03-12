@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, Building2 } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import logo from "@/assets/prospera-logo.png";
 
 const navItems = [
   { label: "Início", href: "/" },
@@ -30,15 +31,7 @@ const Header = () => {
     >
       <div className="container mx-auto flex items-center justify-between h-18 px-4 py-3">
         <Link to="/" className="flex items-center gap-2">
-          <Building2 className={`h-8 w-8 transition-colors duration-300 ${scrolled ? "text-accent" : "text-accent"}`} />
-          <div>
-            <span className={`text-xl font-display font-bold transition-colors duration-300 ${scrolled ? "text-primary" : "text-primary-foreground"}`}>
-              Prospera
-            </span>
-            <span className={`block text-[10px] uppercase tracking-[0.2em] -mt-1 transition-colors duration-300 ${scrolled ? "text-muted-foreground" : "text-primary-foreground/60"}`}>
-              Imobiliária
-            </span>
-          </div>
+          <img src={logo} alt="Prospera" className="h-12 w-auto" />
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">

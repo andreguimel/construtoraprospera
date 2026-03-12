@@ -1,4 +1,5 @@
-import { Building2, Phone, Mail, MapPin, Instagram, Facebook } from "lucide-react";
+import { Phone, Mail, MapPin, Instagram, Facebook } from "lucide-react";
+import logo from "@/assets/prospera-logo.png";
 
 const Footer = () => {
   return (
@@ -39,13 +40,7 @@ const Footer = () => {
           </div>
 
           <div className="flex items-start justify-end">
-            <div className="flex items-center gap-2">
-              <Building2 className="h-10 w-10 text-accent" />
-              <div>
-                <span className="text-2xl font-display font-bold">Prospera</span>
-                <span className="block text-xs uppercase tracking-[0.2em] opacity-70">Imobiliária</span>
-              </div>
-            </div>
+            <img src={logo} alt="Prospera" className="h-16 w-auto" />
           </div>
         </div>
       </div>
