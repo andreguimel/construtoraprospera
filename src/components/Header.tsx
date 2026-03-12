@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, Building2 } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import logo from "@/assets/prospera-logo.png";
 
 const navItems = [
   { label: "Início", href: "/" },
