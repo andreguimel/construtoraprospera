@@ -1,7 +1,24 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import heroImg from "@/assets/hero-building.jpg";
 import { Search, ChevronDown } from "lucide-react";
+import { usePropertyFilters } from "@/hooks/usePropertyFilters";
 
 const HeroSection = () => {
+  const navigate = useNavigate();
+  const { data: filters } = usePropertyFilters();
+  const [type, setType] = useState("");
+  const [city, setCity] = useState("");
+  const [bedrooms, setBedrooms] = useState("");
+
+  const handleSearch = () => {
+    const params = new URLSearchParams();
+    if (type) params.set("tipo", type);
+    if (city) params.set("cidade", city);
+    if (bedrooms) params.set("quartos", bedrooms);
+    navigate(`/imoveis?${params.toString()}`);
+  };
+
   return (
     <section className="relative min-h-[90vh] flex items-center">
       <div className="absolute inset-0">
@@ -10,7 +27,6 @@ const HeroSection = () => {
       </div>
 
       <div className="relative container mx-auto px-4 py-24">
-
         <h1 className="text-4xl md:text-6xl font-display font-bold text-primary-foreground mb-4 max-w-2xl animate-fade-in-up leading-tight">
           Encontre o imóvel dos seus sonhos
         </h1>
@@ -23,27 +39,37 @@ const HeroSection = () => {
           className="bg-card/95 backdrop-blur-md rounded-xl p-5 flex flex-col md:flex-row gap-3 max-w-2xl animate-fade-in-up"
           style={{ animationDelay: "0.3s", boxShadow: "var(--shadow-elevated)" }}
         >
-          <select className="flex-1 px-4 py-3.5 rounded-lg bg-secondary text-foreground border border-border text-sm cursor-pointer">
-            <option>Tipo do Imóvel</option>
-            <option>Casa</option>
-            <option>Terreno</option>
-            <option>Apartamento</option>
-            <option>Cobertura</option>
+          <select
+            value={type}
+            onChange={(e) => setType(e.target.value)}
+            className="flex-1 px-4 py-3.5 rounded-lg bg-secondary text-foreground border border-border text-sm cursor-pointer"
+          >
+            <option value="">Tipo do Imóvel</option>
+            {filters?.types.map((t) => (
+              <option key={t} value={t} className="capitalize">{t.charAt(0).toUpperCase() + t.slice(1)}</option>
+            ))}
           </select>
-          <select className="flex-1 px-4 py-3.5 rounded-lg bg-secondary text-foreground border border-border text-sm cursor-pointer">
-            <option>Localização</option>
-            <option>São Paulo</option>
-            <option>Rio de Janeiro</option>
-            <option>Belo Horizonte</option>
+          <select
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            className="flex-1 px-4 py-3.5 rounded-lg bg-secondary text-foreground border border-border text-sm cursor-pointer"
+          >
+            <option value="">Localização</option>
+            {filters?.cities.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
           </select>
-          <select className="flex-1 px-4 py-3.5 rounded-lg bg-secondary text-foreground border border-border text-sm cursor-pointer">
-            <option>Dormitórios</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4+</option>
+          <select
+            value={bedrooms}
+            onChange={(e) => setBedrooms(e.target.value)}
+            className="flex-1 px-4 py-3.5 rounded-lg bg-secondary text-foreground border border-border text-sm cursor-pointer"
+          >
+            <option value="">Dormitórios</option>
+            {filters?.bedrooms.map((b) => (
+              <option key={b} value={String(b)}>{b}</option>
+            ))}
           </select>
-          <button className="btn-gold flex items-center justify-center gap-2 rounded-lg">
+          <button onClick={handleSearch} className="btn-gold flex items-center justify-center gap-2 rounded-lg">
             <Search className="h-4 w-4" />
             Buscar
           </button>
