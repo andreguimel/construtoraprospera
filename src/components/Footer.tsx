@@ -1,4 +1,5 @@
-import { Building2, Phone, Mail, MapPin, Instagram, Facebook } from "lucide-react";
+import { Phone, Mail, MapPin, Instagram, Facebook } from "lucide-react";
+import logo from "@/assets/prospera-logo.png";
 
 const Footer = () => {
   return (
