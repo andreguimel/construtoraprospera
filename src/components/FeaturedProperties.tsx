@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { MapPin, Maximize2, BedDouble, Bath, Car } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useQuery } from "@tanstack/react-query";
@@ -102,9 +103,9 @@ const FeaturedProperties = () => {
                       <span className="flex items-center gap-1"><Maximize2 className="h-3.5 w-3.5" />Pronto para construir</span>
                     </div>
                   )}
-                  <button className="w-full mt-4 py-2.5 rounded-lg border border-accent text-accent text-sm font-semibold transition-all duration-300 hover:bg-accent hover:text-accent-foreground">
+                  <Link to={`/imoveis/${p.id}`} className="block w-full mt-4 py-2.5 rounded-lg border border-accent text-accent text-sm font-semibold text-center transition-all duration-300 hover:bg-accent hover:text-accent-foreground">
                     Ver Detalhes
-                  </button>
+                  </Link>
                 </div>
               </div>
             ))}
