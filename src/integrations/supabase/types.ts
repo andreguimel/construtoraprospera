@@ -14,7 +14,87 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      properties: {
+        Row: {
+          accepts_pets: boolean | null
+          active: boolean | null
+          address: string
+          area: number | null
+          bathrooms: number | null
+          bedrooms: number | null
+          city: string | null
+          condominium_fee: number | null
+          created_at: string
+          description: string | null
+          featured: boolean | null
+          furnished: boolean | null
+          garage_spots: number | null
+          id: string
+          image_url: string | null
+          images: string[] | null
+          iptu: number | null
+          neighborhood: string | null
+          price: number
+          property_type: string
+          state: string | null
+          title: string
+          transaction_type: string
+          updated_at: string
+        }
+        Insert: {
+          accepts_pets?: boolean | null
+          active?: boolean | null
+          address: string
+          area?: number | null
+          bathrooms?: number | null
+          bedrooms?: number | null
+          city?: string | null
+          condominium_fee?: number | null
+          created_at?: string
+          description?: string | null
+          featured?: boolean | null
+          furnished?: boolean | null
+          garage_spots?: number | null
+          id?: string
+          image_url?: string | null
+          images?: string[] | null
+          iptu?: number | null
+          neighborhood?: string | null
+          price: number
+          property_type?: string
+          state?: string | null
+          title: string
+          transaction_type?: string
+          updated_at?: string
+        }
+        Update: {
+          accepts_pets?: boolean | null
+          active?: boolean | null
+          address?: string
+          area?: number | null
+          bathrooms?: number | null
+          bedrooms?: number | null
+          city?: string | null
+          condominium_fee?: number | null
+          created_at?: string
+          description?: string | null
+          featured?: boolean | null
+          furnished?: boolean | null
+          garage_spots?: number | null
+          id?: string
+          image_url?: string | null
+          images?: string[] | null
+          iptu?: number | null
+          neighborhood?: string | null
+          price?: number
+          property_type?: string
+          state?: string | null
+          title?: string
+          transaction_type?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
