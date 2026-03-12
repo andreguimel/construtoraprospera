@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { MapPin, Maximize2, BedDouble, Bath, Car } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useQuery } from "@tanstack/react-query";
