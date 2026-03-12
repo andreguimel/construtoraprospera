@@ -40,7 +40,9 @@ const Footer = () => {
           </div>
 
           <div className="flex items-start justify-end">
-            <img src={logo} alt="Prospera" className="h-16 w-auto" />
+            <div className="bg-[hsl(225,73%,57%)] p-3 rounded-lg">
+              <img src={logo} alt="Prospera" className="h-16 w-auto" />
+            </div>
           </div>
         </div>
       </div>
