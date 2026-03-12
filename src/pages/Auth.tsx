@@ -39,9 +39,9 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background px-4">
+    <div className="min-h-screen flex items-center justify-center bg-[hsl(225,73%,57%)] px-4">
       <div className="w-full max-w-md">
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center mb-8 bg-[hsl(225,73%,57%)] p-4 rounded-lg">
           <img src={logo} alt="Prospera" className="h-14" />
         </div>
 
