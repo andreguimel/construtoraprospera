@@ -44,7 +44,7 @@ const defaults: SiteSettings = {
   hours: "Seg–Sex: 9h às 18h | Sáb: 9h às 13h",
   hero_images: "",
   hero_title: "Encontre ou Construa o imóvel dos seus sonhos",
-  hero_subtitle: "Apartamentos, casas e coberturas nas melhores localizações do Brasil, com atendimento personalizado.",
+  hero_subtitle: "Casas, apartamentos e terrenos nas melhores localizações, com atendimento personalizado.",
   about_text_1: "A Prospera Imobiliária e Construtora é referência no mercado imobiliário, com anos de experiência realizando os sonhos de nossos clientes. Oferecemos um atendimento personalizado e dedicado para encontrar o imóvel perfeito para você.",
   about_text_2: "Nossa equipe de profissionais altamente qualificados está pronta para auxiliá-lo em todas as etapas da compra, venda ou locação do seu imóvel.",
   about_stat_1_value: "+500",
