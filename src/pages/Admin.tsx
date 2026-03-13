@@ -176,7 +176,7 @@ const Admin = () => {
 
       <main className="container mx-auto px-4 py-8">
         {/* Tabs */}
-        <div className="flex gap-2 mb-6 border-b border-border pb-3">
+        <div className="flex gap-2 mb-6 border-b border-border pb-3 overflow-x-auto">
           <Button
             variant={activeTab === "properties" ? "default" : "ghost"}
             size="sm"

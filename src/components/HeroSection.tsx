@@ -63,7 +63,7 @@ const HeroSection = () => {
           {settings?.hero_title || "Encontre ou Construa o imóvel dos seus sonhos"}
         </h1>
 
-        <p className="text-lg md:text-xl text-primary-foreground/75 max-w-xl mb-10 animate-fade-in-up" style={{ animationDelay: "0.15s" }}>
+        <p className="text-base md:text-xl text-primary-foreground/75 max-w-xl mb-8 md:mb-10 animate-fade-in-up" style={{ animationDelay: "0.15s" }}>
           {settings?.hero_subtitle || "Apartamentos, casas e coberturas nas melhores localizações do Brasil, com atendimento personalizado."}
         </p>
 

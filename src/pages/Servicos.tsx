@@ -143,7 +143,7 @@ const Servicos = () => {
             <div className="relative">
               <div className="absolute -inset-4 rounded-2xl bg-accent/10 rotate-3" />
               <div className="relative rounded-xl overflow-hidden" style={{ boxShadow: "var(--shadow-elevated)" }}>
-                <img src={coupleImg} alt="Consultoria imobiliária" className="w-full h-[480px] object-cover" />
+                <img src={coupleImg} alt="Consultoria imobiliária" className="w-full h-64 lg:h-[480px] object-cover" />
               </div>
             </div>
           </div>
