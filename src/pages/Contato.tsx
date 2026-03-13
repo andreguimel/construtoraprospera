@@ -18,11 +18,27 @@ const Contato = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+      toast({ title: "Preencha os campos obrigatórios", variant: "destructive" });
+      return;
+    }
     setSending(true);
-    await new Promise((r) => setTimeout(r, 1000));
-    toast({ title: "Mensagem enviada!", description: "Entraremos em contato em breve." });
-    setForm({ name: "", email: "", phone: "", subject: "", message: "" });
-    setSending(false);
+    try {
+      const { error } = await supabase.from("contact_messages").insert({
+        name: form.name.trim().slice(0, 100),
+        email: form.email.trim().slice(0, 255),
+        phone: form.phone.trim().slice(0, 30) || null,
+        subject: form.subject.trim().slice(0, 200) || null,
+        message: form.message.trim().slice(0, 2000),
+      });
+      if (error) throw error;
+      toast({ title: "Mensagem enviada!", description: "Entraremos em contato em breve." });
+      setForm({ name: "", email: "", phone: "", subject: "", message: "" });
+    } catch {
+      toast({ title: "Erro ao enviar", description: "Tente novamente mais tarde.", variant: "destructive" });
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
