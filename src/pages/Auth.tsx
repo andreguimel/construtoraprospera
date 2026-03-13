@@ -8,11 +8,9 @@ import { toast } from "@/hooks/use-toast";
 import logo from "@/assets/prospera-logo.png";
 
 const Auth = () => {
-  const { user, loading, signIn, signUp } = useAuth();
-  const [isLogin, setIsLogin] = useState(true);
+  const { user, loading, signIn } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [fullName, setFullName] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
   if (loading) return <div className="min-h-screen flex items-center justify-center bg-background"><p className="text-muted-foreground">Carregando...</p></div>;

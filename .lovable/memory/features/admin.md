@@ -1,0 +1,1 @@
+Super admin is andreguimel@gmail.com. Only admins can add new users. No public signup.
