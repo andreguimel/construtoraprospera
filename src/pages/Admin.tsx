@@ -7,16 +7,18 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
-import { Plus, Pencil, Trash2, LogOut, Home } from "lucide-react";
+import { Plus, Pencil, Trash2, LogOut, Home, Settings } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { Tables, TablesInsert } from "@/integrations/supabase/types";
 import PropertyForm from "@/components/admin/PropertyForm";
+import SettingsPanel from "@/components/admin/SettingsPanel";
 
 const Admin = () => {
   const { user, isAdmin, loading, signOut } = useAuth();
   const queryClient = useQueryClient();
   const [editingProperty, setEditingProperty] = useState<Tables<"properties"> | null>(null);
   const [showForm, setShowForm] = useState(false);
+  const [activeTab, setActiveTab] = useState<"properties" | "settings">("properties");
 
   const { data: properties, isLoading } = useQuery({
     queryKey: ["admin-properties"],
@@ -90,7 +92,27 @@ const Admin = () => {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        {showForm ? (
+        {/* Tabs */}
+        <div className="flex gap-2 mb-6 border-b border-border pb-3">
+          <Button
+            variant={activeTab === "properties" ? "default" : "ghost"}
+            size="sm"
+            onClick={() => { setActiveTab("properties"); setShowForm(false); }}
+          >
+            Imóveis
+          </Button>
+          <Button
+            variant={activeTab === "settings" ? "default" : "ghost"}
+            size="sm"
+            onClick={() => { setActiveTab("settings"); setShowForm(false); }}
+          >
+            <Settings className="h-4 w-4 mr-1" /> Configurações
+          </Button>
+        </div>
+
+        {activeTab === "settings" ? (
+          <SettingsPanel />
+        ) : showForm ? (
           <PropertyForm property={editingProperty} onClose={handleFormClose} />
         ) : (
           <>

@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { MapPin, Maximize2, BedDouble, Bath, Car, ArrowLeft, DogIcon, Sofa, Phone, Mail, MessageCircle } from "lucide-react";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Button } from "@/components/ui/button";
 
 import property1 from "@/assets/property-1.jpg";
@@ -17,6 +18,7 @@ const formatPrice = (price: number) =>
 
 const PropertyDetails = () => {
   const { id } = useParams<{ id: string }>();
+  const { data: settings } = useSiteSettings();
 
   const { data: property, isLoading, error } = useQuery({
     queryKey: ["property-detail", id],
@@ -178,7 +180,7 @@ const PropertyDetails = () => {
               </p>
 
               <a
-                href={`https://wa.me/5500000000000?text=${whatsappMessage}`}
+                href={`https://wa.me/${settings?.whatsapp ?? "5500000000000"}?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-gold w-full flex items-center justify-center gap-2 py-3 rounded-lg"
@@ -188,7 +190,7 @@ const PropertyDetails = () => {
               </a>
 
               <a
-                href="tel:+5500000000000"
+                href={`tel:+${settings?.phone ?? "5500000000000"}`}
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-lg border border-border text-foreground text-sm font-semibold hover:bg-secondary transition-colors"
               >
                 <Phone className="h-4 w-4" />
@@ -196,7 +198,7 @@ const PropertyDetails = () => {
               </a>
 
               <a
-                href="mailto:contato@prospera.com.br"
+                href={`mailto:${settings?.email ?? "contato@prospera.com.br"}`}
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-lg border border-border text-foreground text-sm font-semibold hover:bg-secondary transition-colors"
               >
                 <Mail className="h-4 w-4" />
