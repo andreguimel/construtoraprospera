@@ -12,6 +12,8 @@ import PropertyDetails from "./pages/PropertyDetails.tsx";
 import Contato from "./pages/Contato.tsx";
 import Projetos from "./pages/Projetos.tsx";
 import ProjectDetails from "./pages/ProjectDetails.tsx";
+import Sobre from "./pages/Sobre.tsx";
+import Servicos from "./pages/Servicos.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import WhatsAppFloat from "./components/WhatsAppFloat.tsx";
 
@@ -30,6 +32,8 @@ const App = () => (
             <Route path="/imoveis" element={<Imoveis />} />
             <Route path="/imoveis/:id" element={<PropertyDetails />} />
             <Route path="/contato" element={<Contato />} />
+            <Route path="/sobre" element={<Sobre />} />
+            <Route path="/servicos" element={<Servicos />} />
             <Route path="/projetos" element={<Projetos />} />
             <Route path="/projetos/:id" element={<ProjectDetails />} />
             <Route path="/admin" element={<Admin />} />
