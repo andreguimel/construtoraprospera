@@ -24,7 +24,7 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-[90vh] flex items-center">
       <div className="absolute inset-0">
-        <img src={heroImg} alt="Edifício moderno" className="w-full h-full object-cover" />
+        <img src={settings?.hero_image || heroImg} alt="Edifício moderno" className="w-full h-full object-cover" />
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
       </div>
 
