@@ -14,6 +14,7 @@ import PropertyForm from "@/components/admin/PropertyForm";
 import ProjectForm from "@/components/admin/ProjectForm";
 import TeamMemberForm from "@/components/admin/TeamMemberForm";
 import SettingsPanel from "@/components/admin/SettingsPanel";
+import UserManagement from "@/components/admin/UserManagement";
 
 const Admin = () => {
   const { user, isAdmin, loading, signOut } = useAuth();
