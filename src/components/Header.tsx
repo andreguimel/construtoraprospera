@@ -39,9 +39,7 @@ const Header = () => {
             <Link
               key={item.label}
               to={item.href}
-              className={`text-sm font-medium transition-colors duration-200 hover:text-accent ${
-                scrolled ? "text-foreground" : "text-primary-foreground/90"
-              }`}
+              className="text-sm font-medium transition-colors duration-200 text-white hover:text-white/80"
             >
               {item.label}
             </Link>
@@ -52,7 +50,7 @@ const Header = () => {
         </nav>
 
         <button
-          className={`md:hidden transition-colors ${scrolled ? "text-foreground" : "text-primary-foreground"}`}
+          className="md:hidden text-white transition-colors"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Menu"
         >
