@@ -200,6 +200,42 @@ export type Database = {
         }
         Relationships: []
       }
+      team_members: {
+        Row: {
+          active: boolean
+          bio: string | null
+          created_at: string
+          display_order: number
+          id: string
+          name: string
+          photo_url: string | null
+          role: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          bio?: string | null
+          created_at?: string
+          display_order?: number
+          id?: string
+          name: string
+          photo_url?: string | null
+          role: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          bio?: string | null
+          created_at?: string
+          display_order?: number
+          id?: string
+          name?: string
+          photo_url?: string | null
+          role?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
