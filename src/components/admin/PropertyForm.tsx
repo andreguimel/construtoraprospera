@@ -43,6 +43,8 @@ const PropertyForm = ({ property, onClose }: PropertyFormProps) => {
     featured: property?.featured ?? false,
     active: property?.active ?? true,
     hide_price: property?.hide_price ?? false,
+    youtube_url: property?.youtube_url ?? "",
+    instagram_url: property?.instagram_url ?? "",
   });
 
   const set = (key: string, value: any) => setForm((f) => ({ ...f, [key]: value }));
@@ -72,6 +74,8 @@ const PropertyForm = ({ property, onClose }: PropertyFormProps) => {
         furnished: form.furnished,
         featured: form.featured,
         active: form.active,
+        youtube_url: form.youtube_url || null,
+        instagram_url: form.instagram_url || null,
       };
 
       if (isEditing) {
@@ -222,6 +226,21 @@ const PropertyForm = ({ property, onClose }: PropertyFormProps) => {
             <div className="space-y-2">
               <Label>IPTU (R$)</Label>
               <Input type="number" step="0.01" value={form.iptu} onChange={(e) => set("iptu", e.target.value)} />
+            </div>
+          </div>
+        </div>
+
+        {/* Links externos */}
+        <div>
+          <h3 className="text-lg font-semibold text-foreground mb-3">Links Externos</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label>Link do YouTube</Label>
+              <Input placeholder="https://youtube.com/watch?v=..." value={form.youtube_url} onChange={(e) => set("youtube_url", e.target.value)} />
+            </div>
+            <div className="space-y-2">
+              <Label>Link do Instagram</Label>
+              <Input placeholder="https://instagram.com/p/..." value={form.instagram_url} onChange={(e) => set("instagram_url", e.target.value)} />
             </div>
           </div>
         </div>
