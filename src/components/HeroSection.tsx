@@ -3,10 +3,12 @@ import { useNavigate } from "react-router-dom";
 import heroImg from "@/assets/hero-building.jpg";
 import { Search, ChevronDown } from "lucide-react";
 import { usePropertyFilters } from "@/hooks/usePropertyFilters";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 const HeroSection = () => {
   const navigate = useNavigate();
   const { data: filters } = usePropertyFilters();
+  const { data: settings } = useSiteSettings();
   const [type, setType] = useState("");
   const [city, setCity] = useState("");
   const [bedrooms, setBedrooms] = useState("");
@@ -28,11 +30,11 @@ const HeroSection = () => {
 
       <div className="relative container mx-auto px-4 py-24">
         <h1 className="text-4xl md:text-6xl font-display font-bold text-primary-foreground mb-4 max-w-2xl animate-fade-in-up leading-tight">
-          Encontre ou Construa o imóvel dos seus sonhos
+          {settings?.hero_title || "Encontre ou Construa o imóvel dos seus sonhos"}
         </h1>
 
         <p className="text-lg md:text-xl text-primary-foreground/75 max-w-xl mb-10 animate-fade-in-up" style={{ animationDelay: "0.15s" }}>
-          Apartamentos, casas e coberturas nas melhores localizações do Brasil, com atendimento personalizado.
+          {settings?.hero_subtitle || "Apartamentos, casas e coberturas nas melhores localizações do Brasil, com atendimento personalizado."}
         </p>
 
         <div

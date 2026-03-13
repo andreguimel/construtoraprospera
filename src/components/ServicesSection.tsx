@@ -1,14 +1,24 @@
 import { Home, Key, Building } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
-const services = [
-  { icon: Home, title: "Compra e Venda", description: "Assessoria completa na compra e venda de imóveis residenciais e comerciais." },
-  { icon: Key, title: "Aluguel de Imóveis", description: "Encontre o imóvel ideal para alugar com as melhores condições do mercado." },
-  { icon: Building, title: "Administração de Imóveis", description: "Gestão profissional do seu patrimônio imobiliário com total transparência." },
-];
+const icons = [Home, Key, Building];
 
 const ServicesSection = () => {
   const { ref, isVisible } = useScrollAnimation();
+  const { data: settings } = useSiteSettings();
+
+  const services = settings
+    ? [
+        { icon: icons[0], title: settings.service_1_title, description: settings.service_1_desc },
+        { icon: icons[1], title: settings.service_2_title, description: settings.service_2_desc },
+        { icon: icons[2], title: settings.service_3_title, description: settings.service_3_desc },
+      ]
+    : [
+        { icon: icons[0], title: "Compra e Venda", description: "Assessoria completa na compra e venda de imóveis residenciais e comerciais." },
+        { icon: icons[1], title: "Aluguel de Imóveis", description: "Encontre o imóvel ideal para alugar com as melhores condições do mercado." },
+        { icon: icons[2], title: "Administração de Imóveis", description: "Gestão profissional do seu patrimônio imobiliário com total transparência." },
+      ];
 
   return (
     <section className="py-20 bg-background">
