@@ -10,6 +10,7 @@ import Admin from "./pages/Admin.tsx";
 import Imoveis from "./pages/Imoveis.tsx";
 import PropertyDetails from "./pages/PropertyDetails.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import WhatsAppFloat from "./components/WhatsAppFloat.tsx";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <WhatsAppFloat />
         </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
