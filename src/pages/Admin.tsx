@@ -197,8 +197,9 @@ const Admin = () => {
             variant={activeTab === "team" ? "default" : "ghost"}
             size="sm"
             onClick={() => { setActiveTab("team"); setShowForm(false); }}
+            className="shrink-0"
           >
-            <Users className="h-4 w-4 mr-1" /> Equipe
+            <Users className="h-4 w-4 md:mr-1" /> <span className="hidden md:inline">Equipe</span>
           </Button>
           <Button
             variant={activeTab === "messages" ? "default" : "ghost"}
