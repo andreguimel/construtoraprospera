@@ -9,6 +9,7 @@ export interface SiteSettings {
   address: string;
   hours: string;
   // Hero
+  hero_image: string;
   hero_title: string;
   hero_subtitle: string;
   // About
