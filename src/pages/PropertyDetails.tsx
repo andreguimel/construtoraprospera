@@ -180,7 +180,7 @@ const PropertyDetails = () => {
               </p>
 
               <a
-                href={`https://wa.me/5500000000000?text=${whatsappMessage}`}
+                href={`https://wa.me/${settings?.whatsapp ?? "5500000000000"}?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-gold w-full flex items-center justify-center gap-2 py-3 rounded-lg"
@@ -190,7 +190,7 @@ const PropertyDetails = () => {
               </a>
 
               <a
-                href="tel:+5500000000000"
+                href={`tel:+${settings?.phone ?? "5500000000000"}`}
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-lg border border-border text-foreground text-sm font-semibold hover:bg-secondary transition-colors"
               >
                 <Phone className="h-4 w-4" />
@@ -198,7 +198,7 @@ const PropertyDetails = () => {
               </a>
 
               <a
-                href="mailto:contato@prospera.com.br"
+                href={`mailto:${settings?.email ?? "contato@prospera.com.br"}`}
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-lg border border-border text-foreground text-sm font-semibold hover:bg-secondary transition-colors"
               >
                 <Mail className="h-4 w-4" />
