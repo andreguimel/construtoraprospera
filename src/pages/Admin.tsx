@@ -234,7 +234,9 @@ const Admin = () => {
           </Button>
         </div>
 
-        {activeTab === "settings" ? (
+        {activeTab === "users" ? (
+          <UserManagement />
+        ) : activeTab === "settings" ? (
           <SettingsPanel />
         ) : activeTab === "messages" ? (
           <>
