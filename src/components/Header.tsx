@@ -30,7 +30,7 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between h-18 px-4 py-3">
-        <Link to="/" className="flex items-center gap-2 bg-[#152b47] px-3 py-1.5 rounded-lg">
+        <Link to="/" className="flex items-center gap-2">
           <img src={logo} alt="Prospera" className="h-12 w-auto" />
         </Link>
 
