@@ -52,7 +52,8 @@ const PropertyForm = ({ property, onClose }: PropertyFormProps) => {
       const payload = {
         title: form.title,
         description: form.description || null,
-        price: parseFloat(form.price),
+        price: form.hide_price ? 0 : parseFloat(form.price),
+        hide_price: form.hide_price,
         address: form.address,
         city: form.city || null,
         state: form.state || null,
