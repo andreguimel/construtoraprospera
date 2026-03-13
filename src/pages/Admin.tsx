@@ -90,6 +90,28 @@ const Admin = () => {
     onError: (err: any) => toast({ title: "Erro ao excluir", description: err.message, variant: "destructive" }),
   });
 
+  const deleteMessageMutation = useMutation({
+    mutationFn: async (id: string) => {
+      const { error } = await supabase.from("contact_messages").delete().eq("id", id);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["admin-messages"] });
+      toast({ title: "Mensagem excluída" });
+    },
+    onError: (err: any) => toast({ title: "Erro ao excluir", description: err.message, variant: "destructive" }),
+  });
+
+  const toggleReadMutation = useMutation({
+    mutationFn: async ({ id, read }: { id: string; read: boolean }) => {
+      const { error } = await supabase.from("contact_messages").update({ read }).eq("id", id);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["admin-messages"] });
+    },
+  });
+
   const deleteProjectMutation = useMutation({
     mutationFn: async (id: string) => {
       const { error } = await supabase.from("projects").delete().eq("id", id);
