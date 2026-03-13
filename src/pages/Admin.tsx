@@ -224,6 +224,14 @@ const Admin = () => {
           >
             <Settings className="h-4 w-4 md:mr-1" /> <span className="hidden md:inline">Configurações</span>
           </Button>
+          <Button
+            variant={activeTab === "users" ? "default" : "ghost"}
+            size="sm"
+            onClick={() => { setActiveTab("users"); setShowForm(false); }}
+            className="shrink-0"
+          >
+            <UserCog className="h-4 w-4 md:mr-1" /> <span className="hidden md:inline">Usuários</span>
+          </Button>
         </div>
 
         {activeTab === "settings" ? (
