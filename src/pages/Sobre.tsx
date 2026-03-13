@@ -114,6 +114,37 @@ const Sobre = () => {
         </div>
       </section>
 
+      {/* Equipe */}
+      {teamMembers && teamMembers.length > 0 && (
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <h2 className="section-title mb-12 text-center">Nossa Equipe</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+              {teamMembers.map((member) => (
+                <div key={member.id} className="bg-card rounded-xl border border-border overflow-hidden text-center hover:border-accent transition-colors" style={{ boxShadow: "var(--shadow-card)" }}>
+                  <div className="aspect-square bg-muted overflow-hidden">
+                    {member.photo_url ? (
+                      <img src={member.photo_url} alt={member.name} className="w-full h-full object-cover" />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <User className="h-20 w-20 text-muted-foreground/30" />
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-5">
+                    <h3 className="font-display font-semibold text-foreground text-lg">{member.name}</h3>
+                    <p className="text-accent text-sm font-medium mt-1">{member.role}</p>
+                    {member.bio && (
+                      <p className="text-muted-foreground text-xs mt-3 leading-relaxed line-clamp-3">{member.bio}</p>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* CTA */}
       <section className="py-16">
         <div className="container mx-auto px-4 text-center">
