@@ -1,9 +1,10 @@
+import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { MapPin, Maximize2, BedDouble, Bath, Car, ArrowLeft, DogIcon, Sofa, Phone, Mail, MessageCircle } from "lucide-react";
+import { MapPin, Maximize2, BedDouble, Bath, Car, ArrowLeft, DogIcon, Sofa, Phone, Mail, MessageCircle, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Button } from "@/components/ui/button";
 
