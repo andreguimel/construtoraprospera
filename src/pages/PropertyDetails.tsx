@@ -74,8 +74,10 @@ const PropertyDetails = () => {
 
   const isTerrain = property.property_type === "terreno";
 
+  const priceText = property.hide_price ? "Sob consulta" : formatPrice(Number(property.price));
+
   const whatsappMessage = encodeURIComponent(
-    `Olá! Tenho interesse no imóvel "${property.title}" (${formatPrice(Number(property.price))}). Gostaria de mais informações.`
+    `Olá! Tenho interesse no imóvel "${property.title}"${property.hide_price ? "" : ` (${priceText})`}. Gostaria de mais informações.`
   );
 
   return (
@@ -103,7 +105,7 @@ const PropertyDetails = () => {
 
             {/* Price & badges */}
             <div className="flex flex-wrap items-center gap-4">
-              <p className="text-3xl font-bold text-accent">{formatPrice(Number(property.price))}</p>
+              <p className="text-3xl font-bold text-accent">{priceText}</p>
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-accent text-accent-foreground capitalize">
                 {property.transaction_type}
               </span>

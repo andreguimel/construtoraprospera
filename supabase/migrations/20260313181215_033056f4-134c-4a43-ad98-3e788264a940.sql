@@ -1,0 +1,1 @@
+ALTER TABLE public.properties ADD COLUMN hide_price boolean NOT NULL DEFAULT false;

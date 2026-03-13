@@ -146,6 +146,7 @@ export type Database = {
           featured: boolean | null
           furnished: boolean | null
           garage_spots: number | null
+          hide_price: boolean
           id: string
           image_url: string | null
           images: string[] | null
@@ -172,6 +173,7 @@ export type Database = {
           featured?: boolean | null
           furnished?: boolean | null
           garage_spots?: number | null
+          hide_price?: boolean
           id?: string
           image_url?: string | null
           images?: string[] | null
@@ -198,6 +200,7 @@ export type Database = {
           featured?: boolean | null
           furnished?: boolean | null
           garage_spots?: number | null
+          hide_price?: boolean
           id?: string
           image_url?: string | null
           images?: string[] | null

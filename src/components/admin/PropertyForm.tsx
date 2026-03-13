@@ -42,6 +42,7 @@ const PropertyForm = ({ property, onClose }: PropertyFormProps) => {
     furnished: property?.furnished ?? false,
     featured: property?.featured ?? false,
     active: property?.active ?? true,
+    hide_price: property?.hide_price ?? false,
   });
 
   const set = (key: string, value: any) => setForm((f) => ({ ...f, [key]: value }));
@@ -51,7 +52,8 @@ const PropertyForm = ({ property, onClose }: PropertyFormProps) => {
       const payload = {
         title: form.title,
         description: form.description || null,
-        price: parseFloat(form.price),
+        price: form.hide_price ? 0 : parseFloat(form.price),
+        hide_price: form.hide_price,
         address: form.address,
         city: form.city || null,
         state: form.state || null,
@@ -91,8 +93,12 @@ const PropertyForm = ({ property, onClose }: PropertyFormProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.title || !form.price || !form.address) {
+    if (!form.title || !form.address) {
       toast({ title: "Preencha os campos obrigatórios", variant: "destructive" });
+      return;
+    }
+    if (!form.hide_price && !form.price) {
+      toast({ title: "Informe o preço ou marque 'Sob consulta'", variant: "destructive" });
       return;
     }
     mutation.mutate();
@@ -120,8 +126,16 @@ const PropertyForm = ({ property, onClose }: PropertyFormProps) => {
             <Textarea value={form.description} onChange={(e) => set("description", e.target.value)} rows={3} />
           </div>
           <div className="space-y-2">
-            <Label>Preço (R$) *</Label>
-            <Input type="number" step="0.01" value={form.price} onChange={(e) => set("price", e.target.value)} required />
+            <div className="flex items-center gap-2 mb-2">
+              <Switch checked={form.hide_price} onCheckedChange={(v) => set("hide_price", v)} />
+              <Label>Sob consulta (não mostrar preço)</Label>
+            </div>
+            {!form.hide_price && (
+              <>
+                <Label>Preço (R$) *</Label>
+                <Input type="number" step="0.01" value={form.price} onChange={(e) => set("price", e.target.value)} required />
+              </>
+            )}
           </div>
           <div className="space-y-2">
             <Label>Tipo de transação</Label>

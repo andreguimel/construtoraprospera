@@ -163,7 +163,7 @@ const Imoveis = () => {
                     </div>
                     <div className="p-5">
                       <h3 className="font-display font-semibold text-lg text-foreground">{p.title}</h3>
-                      <p className="text-accent font-bold text-xl mt-1">{formatPrice(Number(p.price))}</p>
+                      <p className="text-accent font-bold text-xl mt-1">{p.hide_price ? "Sob consulta" : formatPrice(Number(p.price))}</p>
                       <div className="flex items-center gap-4 mt-3 text-muted-foreground text-sm">
                         <span className="flex items-center gap-1">
                           <MapPin className="h-3.5 w-3.5" />
