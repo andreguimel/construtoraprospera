@@ -189,8 +189,9 @@ const Admin = () => {
             variant={activeTab === "projects" ? "default" : "ghost"}
             size="sm"
             onClick={() => { setActiveTab("projects"); setShowForm(false); }}
+            className="shrink-0"
           >
-            <Building2 className="h-4 w-4 mr-1" /> Projetos
+            <Building2 className="h-4 w-4 md:mr-1" /> <span className="hidden md:inline">Projetos</span>
           </Button>
           <Button
             variant={activeTab === "team" ? "default" : "ghost"}
