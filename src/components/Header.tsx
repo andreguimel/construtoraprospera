@@ -25,7 +25,7 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-card/95 backdrop-blur-lg border-b border-border shadow-sm"
+          ? "bg-[#152b47]/95 backdrop-blur-lg border-b border-border shadow-sm"
           : "bg-transparent border-b border-transparent"
       }`}
     >
