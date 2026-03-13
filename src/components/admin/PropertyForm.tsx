@@ -37,6 +37,7 @@ const PropertyForm = ({ property, onClose }: PropertyFormProps) => {
     condominium_fee: property?.condominium_fee?.toString() ?? "",
     iptu: property?.iptu?.toString() ?? "",
     image_url: property?.image_url ?? "",
+    images: property?.images ?? [],
     accepts_pets: property?.accepts_pets ?? false,
     furnished: property?.furnished ?? false,
     featured: property?.featured ?? false,
