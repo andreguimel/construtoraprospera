@@ -98,27 +98,9 @@ const PropertyDetails = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main content */}
-          <div className="lg:col-span-2 space-y-8">
-            {/* Gallery */}
-            <div className="rounded-xl overflow-hidden border border-border">
-              <img
-                src={allImages[0]}
-                alt={property.title}
-                className="w-full h-[300px] md:h-[450px] object-cover"
-              />
-              {allImages.length > 1 && (
-                <div className="grid grid-cols-4 gap-1 p-1 bg-card">
-                  {allImages.slice(1, 5).map((img, i) => (
-                    <img
-                      key={i}
-                      src={img}
-                      alt={`${property.title} - foto ${i + 2}`}
-                      className="w-full h-24 object-cover rounded cursor-pointer hover:opacity-80 transition-opacity"
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
+          <div className="space-y-8">
+            {/* Gallery Carousel */}
+            <ImageGallery images={allImages} title={property.title} />
 
             {/* Price & badges */}
             <div className="flex flex-wrap items-center gap-4">
