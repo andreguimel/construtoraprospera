@@ -177,6 +177,82 @@ const Admin = () => {
 
         {activeTab === "settings" ? (
           <SettingsPanel />
+        ) : activeTab === "team" ? (
+          showForm ? (
+            <TeamMemberForm member={editingMember} onClose={handleFormClose} />
+          ) : (
+            <>
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-bold text-foreground font-display">
+                  Equipe ({teamMembers?.length ?? 0})
+                </h2>
+                <Button onClick={() => { setEditingMember(null); setShowForm(true); }} className="btn-gold">
+                  <Plus className="h-4 w-4 mr-1" /> Novo Membro
+                </Button>
+              </div>
+
+              {teamLoading ? (
+                <p className="text-muted-foreground">Carregando equipe...</p>
+              ) : !teamMembers?.length ? (
+                <div className="text-center py-16 text-muted-foreground">
+                  <p className="text-lg mb-2">Nenhum membro cadastrado</p>
+                  <p className="text-sm">Clique em "Novo Membro" para começar</p>
+                </div>
+              ) : (
+                <div className="bg-card rounded-lg border border-border overflow-hidden">
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="border-b border-border bg-muted/50">
+                          <th className="text-left px-4 py-3 font-medium text-muted-foreground">Foto</th>
+                          <th className="text-left px-4 py-3 font-medium text-muted-foreground">Nome</th>
+                          <th className="text-left px-4 py-3 font-medium text-muted-foreground">Cargo</th>
+                          <th className="text-left px-4 py-3 font-medium text-muted-foreground">Ordem</th>
+                          <th className="text-left px-4 py-3 font-medium text-muted-foreground">Status</th>
+                          <th className="text-right px-4 py-3 font-medium text-muted-foreground">Ações</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {teamMembers.map((m) => (
+                          <tr key={m.id} className="border-b border-border last:border-0 hover:bg-muted/30 transition-colors">
+                            <td className="px-4 py-3">
+                              {m.photo_url ? (
+                                <img src={m.photo_url} alt={m.name} className="w-10 h-10 rounded-full object-cover" />
+                              ) : (
+                                <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center">
+                                  <Users className="h-4 w-4 text-muted-foreground" />
+                                </div>
+                              )}
+                            </td>
+                            <td className="px-4 py-3 font-medium text-foreground">{m.name}</td>
+                            <td className="px-4 py-3 text-muted-foreground">{m.role}</td>
+                            <td className="px-4 py-3 text-muted-foreground">{m.display_order}</td>
+                            <td className="px-4 py-3">
+                              <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${m.active ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}>
+                                {m.active ? "Ativo" : "Inativo"}
+                              </span>
+                            </td>
+                            <td className="px-4 py-3 text-right">
+                              <div className="flex items-center justify-end gap-1">
+                                <Button variant="ghost" size="icon" onClick={() => { setEditingMember(m); setShowForm(true); }}>
+                                  <Pencil className="h-4 w-4" />
+                                </Button>
+                                <Button variant="ghost" size="icon" onClick={() => {
+                                  if (confirm("Excluir este membro?")) deleteTeamMutation.mutate(m.id);
+                                }}>
+                                  <Trash2 className="h-4 w-4 text-destructive" />
+                                </Button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+            </>
+          )
         ) : activeTab === "projects" ? (
           showForm ? (
             <ProjectForm project={editingProject} onClose={handleFormClose} />
