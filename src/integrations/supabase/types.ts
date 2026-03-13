@@ -150,6 +150,7 @@ export type Database = {
           id: string
           image_url: string | null
           images: string[] | null
+          instagram_url: string | null
           iptu: number | null
           neighborhood: string | null
           price: number
@@ -158,6 +159,7 @@ export type Database = {
           title: string
           transaction_type: string
           updated_at: string
+          youtube_url: string | null
         }
         Insert: {
           accepts_pets?: boolean | null
@@ -177,6 +179,7 @@ export type Database = {
           id?: string
           image_url?: string | null
           images?: string[] | null
+          instagram_url?: string | null
           iptu?: number | null
           neighborhood?: string | null
           price: number
@@ -185,6 +188,7 @@ export type Database = {
           title: string
           transaction_type?: string
           updated_at?: string
+          youtube_url?: string | null
         }
         Update: {
           accepts_pets?: boolean | null
@@ -204,6 +208,7 @@ export type Database = {
           id?: string
           image_url?: string | null
           images?: string[] | null
+          instagram_url?: string | null
           iptu?: number | null
           neighborhood?: string | null
           price?: number
@@ -212,6 +217,7 @@ export type Database = {
           title?: string
           transaction_type?: string
           updated_at?: string
+          youtube_url?: string | null
         }
         Relationships: []
       }
