@@ -28,7 +28,7 @@ const HeroSection = () => {
 
       <div className="relative container mx-auto px-4 py-24">
         <h1 className="text-4xl md:text-6xl font-display font-bold text-primary-foreground mb-4 max-w-2xl animate-fade-in-up leading-tight">
-          Encontre o imóvel dos seus sonhos
+          Encontre ou Construa o imóvel dos seus sonhos
         </h1>
 
         <p className="text-lg md:text-xl text-primary-foreground/75 max-w-xl mb-10 animate-fade-in-up" style={{ animationDelay: "0.15s" }}>
