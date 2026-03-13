@@ -9,6 +9,7 @@ import { Switch } from "@/components/ui/switch";
 import { toast } from "@/hooks/use-toast";
 import { ArrowLeft } from "lucide-react";
 import type { Tables } from "@/integrations/supabase/types";
+import ImageUploader from "./ImageUploader";
 
 interface PropertyFormProps {
   property: Tables<"properties"> | null;
