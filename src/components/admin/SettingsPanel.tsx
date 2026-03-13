@@ -170,12 +170,6 @@ const SettingsPanel = () => {
           </>
         )}
 
-        {activeTab === "pagina_contato" && (
-          <>
-            <Field label="Título da Página" settingsKey="contact_page_title" />
-            <Field label="Subtítulo" settingsKey="contact_page_subtitle" multiline />
-          </>
-        )}
       </div>
 
       <Button onClick={() => mutation.mutate()} disabled={mutation.isPending} className="btn-gold">
