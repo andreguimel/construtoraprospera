@@ -25,12 +25,12 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-card/95 backdrop-blur-lg border-b border-border shadow-sm"
+          ? "bg-[#152b47]/95 backdrop-blur-lg border-b border-border shadow-sm"
           : "bg-transparent border-b border-transparent"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between h-18 px-4 py-3">
-        <Link to="/" className="flex items-center gap-2 bg-[#152b47] px-3 py-1.5 rounded-lg">
+        <Link to="/" className="flex items-center gap-2">
           <img src={logo} alt="Prospera" className="h-12 w-auto" />
         </Link>
 
