@@ -142,11 +142,13 @@ const PropertyForm = ({ property, onClose }: PropertyFormProps) => {
               <option value="rural">Rural</option>
             </select>
           </div>
-          <div className="space-y-2">
-            <Label>URL da imagem</Label>
-            <Input value={form.image_url} onChange={(e) => set("image_url", e.target.value)} placeholder="https://..." />
+          <div className="space-y-2 md:col-span-2">
+            <Label>Imagens do imóvel</Label>
+            <ImageUploader
+              images={form.images as string[]}
+              onChange={(imgs) => set("images", imgs)}
+            />
           </div>
-        </div>
 
         {/* Endereço */}
         <div>
