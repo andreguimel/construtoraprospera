@@ -47,13 +47,13 @@ const Projetos = () => {
     <div className="min-h-screen bg-background">
       <Header />
 
-      {/* Hero */}
-      <section className="pt-32 pb-16 bg-gradient-to-b from-primary/20 to-background">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground font-display mb-4">
+      {/* Hero banner */}
+      <section className="pt-28 pb-12 bg-primary">
+        <div className="container mx-auto px-4">
+          <h1 className="text-3xl md:text-4xl font-display font-bold text-primary-foreground mb-2">
             Nossos Projetos
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-primary-foreground/70">
             Conheça os projetos que estamos construindo e os que já entregamos com qualidade e excelência.
           </p>
         </div>
