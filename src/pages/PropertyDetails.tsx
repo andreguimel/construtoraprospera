@@ -202,6 +202,96 @@ const PropertyDetails = () => {
   );
 };
 
+const ImageGallery = ({ images, title }: { images: string[]; title: string }) => {
+  const [current, setCurrent] = useState(0);
+  const [lightbox, setLightbox] = useState(false);
+
+  const prev = () => setCurrent((c) => (c === 0 ? images.length - 1 : c - 1));
+  const next = () => setCurrent((c) => (c === images.length - 1 ? 0 : c + 1));
+
+  return (
+    <>
+      <div className="rounded-xl overflow-hidden border border-border bg-card">
+        <div className="relative group cursor-pointer" onClick={() => setLightbox(true)}>
+          <img
+            src={images[current]}
+            alt={`${title} - foto ${current + 1}`}
+            className="w-full h-[300px] md:h-[450px] object-cover transition-all duration-300"
+          />
+          {images.length > 1 && (
+            <>
+              <button
+                onClick={(e) => { e.stopPropagation(); prev(); }}
+                className="absolute left-3 top-1/2 -translate-y-1/2 bg-card/80 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-card"
+              >
+                <ChevronLeft className="h-5 w-5 text-foreground" />
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); next(); }}
+                className="absolute right-3 top-1/2 -translate-y-1/2 bg-card/80 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-card"
+              >
+                <ChevronRight className="h-5 w-5 text-foreground" />
+              </button>
+              <div className="absolute bottom-3 right-3 bg-card/80 backdrop-blur-sm text-foreground text-xs font-medium px-3 py-1 rounded-full">
+                {current + 1} / {images.length}
+              </div>
+            </>
+          )}
+        </div>
+
+        {images.length > 1 && (
+          <div className="flex gap-1 p-2 overflow-x-auto">
+            {images.map((img, i) => (
+              <img
+                key={i}
+                src={img}
+                alt={`${title} - foto ${i + 1}`}
+                onClick={() => setCurrent(i)}
+                className={`h-20 w-28 flex-shrink-0 object-cover rounded cursor-pointer transition-all duration-200 ${
+                  i === current ? "ring-2 ring-accent opacity-100" : "opacity-60 hover:opacity-90"
+                }`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+
+      {lightbox && (
+        <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center" onClick={() => setLightbox(false)}>
+          <button className="absolute top-4 right-4 text-white/70 hover:text-white" onClick={() => setLightbox(false)}>
+            <X className="h-8 w-8" />
+          </button>
+          {images.length > 1 && (
+            <>
+              <button
+                onClick={(e) => { e.stopPropagation(); prev(); }}
+                className="absolute left-4 text-white/70 hover:text-white"
+              >
+                <ChevronLeft className="h-10 w-10" />
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); next(); }}
+                className="absolute right-4 text-white/70 hover:text-white"
+              >
+                <ChevronRight className="h-10 w-10" />
+              </button>
+            </>
+          )}
+          <img
+            src={images[current]}
+            alt={`${title} - foto ${current + 1}`}
+            className="max-h-[85vh] max-w-[90vw] object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+          <div className="absolute bottom-6 text-white/70 text-sm">
+            {current + 1} / {images.length}
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
 const FeatureCard = ({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) => (
   <div className="bg-card rounded-xl border border-border p-4 text-center">
     <div className="flex justify-center text-accent mb-2">{icon}</div>
