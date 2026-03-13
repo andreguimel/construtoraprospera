@@ -104,11 +104,11 @@ const FeaturedProperties = () => {
                       <span className="flex items-center gap-1"><Maximize2 className="h-3.5 w-3.5" />Pronto para construir</span>
                     </div>
                   )}
-                  <Link to={`/imoveis/${p.id}`} className="block w-full mt-4 py-2.5 rounded-lg border border-accent text-accent text-sm font-semibold text-center transition-all duration-300 hover:bg-accent hover:text-accent-foreground">
+                  <span className="block w-full mt-4 py-2.5 rounded-lg border border-accent text-accent text-sm font-semibold text-center transition-all duration-300 group-hover:bg-accent group-hover:text-accent-foreground">
                     Ver Detalhes
-                  </Link>
+                  </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         )}
