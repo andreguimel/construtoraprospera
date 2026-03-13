@@ -115,6 +115,9 @@ const SettingsPanel = () => {
               <Field label="Instagram URL" settingsKey="instagram_url" />
               <Field label="Facebook URL" settingsKey="facebook_url" />
             </div>
+            <h3 className="font-semibold text-foreground pt-4">Página de Contato</h3>
+            <Field label="Título da Página" settingsKey="contact_page_title" />
+            <Field label="Subtítulo" settingsKey="contact_page_subtitle" multiline />
           </>
         )}
 
