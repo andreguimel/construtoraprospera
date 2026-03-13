@@ -17,6 +17,7 @@ import SettingsPanel from "@/components/admin/SettingsPanel";
 
 const Admin = () => {
   const { user, isAdmin, loading, signOut } = useAuth();
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [editingProperty, setEditingProperty] = useState<Tables<"properties"> | null>(null);
   const [editingProject, setEditingProject] = useState<any>(null);
