@@ -11,6 +11,19 @@ import { Link } from "react-router-dom";
 const Sobre = () => {
   const { data: settings } = useSiteSettings();
 
+  const { data: teamMembers } = useQuery({
+    queryKey: ["team-members"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("team_members")
+        .select("*")
+        .eq("active", true)
+        .order("display_order", { ascending: true });
+      if (error) throw error;
+      return data;
+    },
+  });
+
   const stats = settings
     ? [
         { value: settings.about_stat_1_value, label: settings.about_stat_1_label },
