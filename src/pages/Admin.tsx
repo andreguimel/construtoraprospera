@@ -199,6 +199,19 @@ const Admin = () => {
             <Users className="h-4 w-4 mr-1" /> Equipe
           </Button>
           <Button
+            variant={activeTab === "messages" ? "default" : "ghost"}
+            size="sm"
+            onClick={() => { setActiveTab("messages"); setShowForm(false); }}
+            className="relative"
+          >
+            <MessageSquare className="h-4 w-4 mr-1" /> Mensagens
+            {messages && messages.filter((m) => !m.read).length > 0 && (
+              <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-destructive text-destructive-foreground text-xs flex items-center justify-center">
+                {messages.filter((m) => !m.read).length}
+              </span>
+            )}
+          </Button>
+          <Button
             variant={activeTab === "settings" ? "default" : "ghost"}
             size="sm"
             onClick={() => { setActiveTab("settings"); setShowForm(false); }}
