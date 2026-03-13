@@ -149,6 +149,7 @@ const PropertyForm = ({ property, onClose }: PropertyFormProps) => {
               onChange={(imgs) => set("images", imgs)}
             />
           </div>
+        </div>
 
         {/* Endereço */}
         <div>
