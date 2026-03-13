@@ -1,9 +1,10 @@
+import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { MapPin, Maximize2, BedDouble, Bath, Car, ArrowLeft, DogIcon, Sofa, Phone, Mail, MessageCircle } from "lucide-react";
+import { MapPin, Maximize2, BedDouble, Bath, Car, ArrowLeft, DogIcon, Sofa, Phone, Mail, MessageCircle, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Button } from "@/components/ui/button";
 
@@ -96,28 +97,9 @@ const PropertyDetails = () => {
 
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main content */}
           <div className="lg:col-span-2 space-y-8">
-            {/* Gallery */}
-            <div className="rounded-xl overflow-hidden border border-border">
-              <img
-                src={allImages[0]}
-                alt={property.title}
-                className="w-full h-[300px] md:h-[450px] object-cover"
-              />
-              {allImages.length > 1 && (
-                <div className="grid grid-cols-4 gap-1 p-1 bg-card">
-                  {allImages.slice(1, 5).map((img, i) => (
-                    <img
-                      key={i}
-                      src={img}
-                      alt={`${property.title} - foto ${i + 2}`}
-                      className="w-full h-24 object-cover rounded cursor-pointer hover:opacity-80 transition-opacity"
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
+            {/* Gallery Carousel */}
+            <ImageGallery images={allImages} title={property.title} />
 
             {/* Price & badges */}
             <div className="flex flex-wrap items-center gap-4">
@@ -217,6 +199,96 @@ const PropertyDetails = () => {
 
       <Footer />
     </div>
+  );
+};
+
+const ImageGallery = ({ images, title }: { images: string[]; title: string }) => {
+  const [current, setCurrent] = useState(0);
+  const [lightbox, setLightbox] = useState(false);
+
+  const prev = () => setCurrent((c) => (c === 0 ? images.length - 1 : c - 1));
+  const next = () => setCurrent((c) => (c === images.length - 1 ? 0 : c + 1));
+
+  return (
+    <>
+      <div className="rounded-xl overflow-hidden border border-border bg-card">
+        <div className="relative group cursor-pointer" onClick={() => setLightbox(true)}>
+          <img
+            src={images[current]}
+            alt={`${title} - foto ${current + 1}`}
+            className="w-full h-[300px] md:h-[450px] object-cover transition-all duration-300"
+          />
+          {images.length > 1 && (
+            <>
+              <button
+                onClick={(e) => { e.stopPropagation(); prev(); }}
+                className="absolute left-3 top-1/2 -translate-y-1/2 bg-card/80 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-card"
+              >
+                <ChevronLeft className="h-5 w-5 text-foreground" />
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); next(); }}
+                className="absolute right-3 top-1/2 -translate-y-1/2 bg-card/80 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-card"
+              >
+                <ChevronRight className="h-5 w-5 text-foreground" />
+              </button>
+              <div className="absolute bottom-3 right-3 bg-card/80 backdrop-blur-sm text-foreground text-xs font-medium px-3 py-1 rounded-full">
+                {current + 1} / {images.length}
+              </div>
+            </>
+          )}
+        </div>
+
+        {images.length > 1 && (
+          <div className="flex gap-1 p-2 overflow-x-auto">
+            {images.map((img, i) => (
+              <img
+                key={i}
+                src={img}
+                alt={`${title} - foto ${i + 1}`}
+                onClick={() => setCurrent(i)}
+                className={`h-20 w-28 flex-shrink-0 object-cover rounded cursor-pointer transition-all duration-200 ${
+                  i === current ? "ring-2 ring-accent opacity-100" : "opacity-60 hover:opacity-90"
+                }`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+
+      {lightbox && (
+        <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center" onClick={() => setLightbox(false)}>
+          <button className="absolute top-4 right-4 text-white/70 hover:text-white" onClick={() => setLightbox(false)}>
+            <X className="h-8 w-8" />
+          </button>
+          {images.length > 1 && (
+            <>
+              <button
+                onClick={(e) => { e.stopPropagation(); prev(); }}
+                className="absolute left-4 text-white/70 hover:text-white"
+              >
+                <ChevronLeft className="h-10 w-10" />
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); next(); }}
+                className="absolute right-4 text-white/70 hover:text-white"
+              >
+                <ChevronRight className="h-10 w-10" />
+              </button>
+            </>
+          )}
+          <img
+            src={images[current]}
+            alt={`${title} - foto ${current + 1}`}
+            className="max-h-[85vh] max-w-[90vw] object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+          <div className="absolute bottom-6 text-white/70 text-sm">
+            {current + 1} / {images.length}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
