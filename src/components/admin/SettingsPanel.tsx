@@ -10,14 +10,13 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import { Save, Phone, Mail, MessageCircle, Home, FileText, Info, Globe } from "lucide-react";
 
-type Tab = "contato" | "hero" | "sobre" | "servicos" | "pagina_contato";
+type Tab = "contato" | "hero" | "sobre" | "servicos";
 
 const tabs: { key: Tab; label: string; icon: typeof Phone }[] = [
   { key: "contato", label: "Contato", icon: Phone },
   { key: "hero", label: "Hero / Início", icon: Home },
   { key: "sobre", label: "Sobre Nós", icon: Info },
   { key: "servicos", label: "Serviços", icon: FileText },
-  { key: "pagina_contato", label: "Pág. Contato", icon: Globe },
 ];
 
 const SettingsPanel = () => {
@@ -116,6 +115,9 @@ const SettingsPanel = () => {
               <Field label="Instagram URL" settingsKey="instagram_url" />
               <Field label="Facebook URL" settingsKey="facebook_url" />
             </div>
+            <h3 className="font-semibold text-foreground pt-4">Página de Contato</h3>
+            <Field label="Título da Página" settingsKey="contact_page_title" />
+            <Field label="Subtítulo" settingsKey="contact_page_subtitle" multiline />
           </>
         )}
 
@@ -168,12 +170,6 @@ const SettingsPanel = () => {
           </>
         )}
 
-        {activeTab === "pagina_contato" && (
-          <>
-            <Field label="Título da Página" settingsKey="contact_page_title" />
-            <Field label="Subtítulo" settingsKey="contact_page_subtitle" multiline />
-          </>
-        )}
       </div>
 
       <Button onClick={() => mutation.mutate()} disabled={mutation.isPending} className="btn-gold">
