@@ -137,6 +137,22 @@ const PropertyDetails = () => {
               </div>
             )}
 
+            {/* External links */}
+            {(property.youtube_url || property.instagram_url) && (
+              <div className="flex flex-wrap gap-3">
+                {property.youtube_url && (
+                  <a href={property.youtube_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-red-600 text-white font-semibold text-sm hover:bg-red-700 transition-colors">
+                    <Youtube className="h-5 w-5" /> Ver no YouTube
+                  </a>
+                )}
+                {property.instagram_url && (
+                  <a href={property.instagram_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold text-sm hover:opacity-90 transition-opacity">
+                    <Instagram className="h-5 w-5" /> Ver no Instagram
+                  </a>
+                )}
+              </div>
+            )}
+
             {/* Additional details */}
             <div className="bg-card rounded-xl border border-border p-6">
               <h2 className="text-lg font-display font-semibold text-foreground mb-4">Detalhes</h2>
