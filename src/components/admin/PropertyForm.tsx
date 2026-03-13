@@ -42,6 +42,7 @@ const PropertyForm = ({ property, onClose }: PropertyFormProps) => {
     furnished: property?.furnished ?? false,
     featured: property?.featured ?? false,
     active: property?.active ?? true,
+    hide_price: property?.hide_price ?? false,
   });
 
   const set = (key: string, value: any) => setForm((f) => ({ ...f, [key]: value }));
