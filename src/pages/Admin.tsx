@@ -222,6 +222,57 @@ const Admin = () => {
 
         {activeTab === "settings" ? (
           <SettingsPanel />
+        ) : activeTab === "messages" ? (
+          <>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold text-foreground font-display">
+                Mensagens ({messages?.length ?? 0})
+              </h2>
+            </div>
+
+            {messagesLoading ? (
+              <p className="text-muted-foreground">Carregando mensagens...</p>
+            ) : !messages?.length ? (
+              <div className="text-center py-16 text-muted-foreground">
+                <MessageSquare className="h-12 w-12 mx-auto mb-3 opacity-30" />
+                <p className="text-lg mb-2">Nenhuma mensagem recebida</p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {messages.map((msg) => (
+                  <div key={msg.id} className={`bg-card rounded-lg border p-5 transition-colors ${msg.read ? "border-border opacity-70" : "border-accent/50"}`}>
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-3 mb-2">
+                          <h3 className="font-semibold text-foreground">{msg.name}</h3>
+                          {!msg.read && (
+                            <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-accent/20 text-accent-foreground">Nova</span>
+                          )}
+                        </div>
+                        <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground mb-3">
+                          <span>{msg.email}</span>
+                          {msg.phone && <span>{msg.phone}</span>}
+                          {msg.subject && <span>Assunto: {msg.subject}</span>}
+                          <span>{new Date(msg.created_at).toLocaleString("pt-BR")}</span>
+                        </div>
+                        <p className="text-sm text-foreground whitespace-pre-line">{msg.message}</p>
+                      </div>
+                      <div className="flex items-center gap-1 shrink-0">
+                        <Button variant="ghost" size="icon" title={msg.read ? "Marcar como não lida" : "Marcar como lida"} onClick={() => toggleReadMutation.mutate({ id: msg.id, read: !msg.read })}>
+                          {msg.read ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                        </Button>
+                        <Button variant="ghost" size="icon" onClick={() => {
+                          if (confirm("Excluir esta mensagem?")) deleteMessageMutation.mutate(msg.id);
+                        }}>
+                          <Trash2 className="h-4 w-4 text-destructive" />
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </>
         ) : activeTab === "team" ? (
           showForm ? (
             <TeamMemberForm member={editingMember} onClose={handleFormClose} />
