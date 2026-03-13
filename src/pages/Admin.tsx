@@ -92,6 +92,7 @@ const Admin = () => {
   const handleFormClose = () => {
     setShowForm(false);
     setEditingProperty(null);
+    setEditingProject(null);
   };
 
   const formatPrice = (price: number) =>
