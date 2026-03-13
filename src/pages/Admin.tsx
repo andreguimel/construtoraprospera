@@ -132,7 +132,7 @@ const Admin = () => {
       <div className="text-center space-y-4">
         <h1 className="text-2xl font-bold text-foreground">Acesso negado</h1>
         <p className="text-muted-foreground">Você não tem permissão de administrador.</p>
-        <Button variant="outline" onClick={signOut}>Sair</Button>
+        <Button variant="outline" onClick={async () => { await signOut(); navigate("/auth"); }}>Sair</Button>
       </div>
     </div>
   );
