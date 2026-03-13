@@ -93,8 +93,12 @@ const PropertyForm = ({ property, onClose }: PropertyFormProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.title || !form.price || !form.address) {
+    if (!form.title || !form.address) {
       toast({ title: "Preencha os campos obrigatórios", variant: "destructive" });
+      return;
+    }
+    if (!form.hide_price && !form.price) {
+      toast({ title: "Informe o preço ou marque 'Sob consulta'", variant: "destructive" });
       return;
     }
     mutation.mutate();
