@@ -7,13 +7,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
-import { Plus, Pencil, Trash2, LogOut, Home, Settings, Building2, Users, MessageSquare, Eye, EyeOff } from "lucide-react";
+import { Plus, Pencil, Trash2, LogOut, Home, Settings, Building2, Users, MessageSquare, Eye, EyeOff, UserCog } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { Tables, TablesInsert } from "@/integrations/supabase/types";
 import PropertyForm from "@/components/admin/PropertyForm";
 import ProjectForm from "@/components/admin/ProjectForm";
 import TeamMemberForm from "@/components/admin/TeamMemberForm";
 import SettingsPanel from "@/components/admin/SettingsPanel";
+import UserManagement from "@/components/admin/UserManagement";
 
 const Admin = () => {
   const { user, isAdmin, loading, signOut } = useAuth();
@@ -23,7 +24,7 @@ const Admin = () => {
   const [editingProject, setEditingProject] = useState<any>(null);
   const [editingMember, setEditingMember] = useState<any>(null);
   const [showForm, setShowForm] = useState(false);
-  const [activeTab, setActiveTab] = useState<"properties" | "projects" | "team" | "messages" | "settings">("properties");
+  const [activeTab, setActiveTab] = useState<"properties" | "projects" | "team" | "messages" | "settings" | "users">("properties");
 
   const { data: properties, isLoading } = useQuery({
     queryKey: ["admin-properties"],
@@ -223,9 +224,19 @@ const Admin = () => {
           >
             <Settings className="h-4 w-4 md:mr-1" /> <span className="hidden md:inline">Configurações</span>
           </Button>
+          <Button
+            variant={activeTab === "users" ? "default" : "ghost"}
+            size="sm"
+            onClick={() => { setActiveTab("users"); setShowForm(false); }}
+            className="shrink-0"
+          >
+            <UserCog className="h-4 w-4 md:mr-1" /> <span className="hidden md:inline">Usuários</span>
+          </Button>
         </div>
 
-        {activeTab === "settings" ? (
+        {activeTab === "users" ? (
+          <UserManagement />
+        ) : activeTab === "settings" ? (
           <SettingsPanel />
         ) : activeTab === "messages" ? (
           <>
