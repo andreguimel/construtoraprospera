@@ -118,6 +118,7 @@ const Admin = () => {
     setShowForm(false);
     setEditingProperty(null);
     setEditingProject(null);
+    setEditingMember(null);
   };
 
   const formatPrice = (price: number) =>
