@@ -32,7 +32,7 @@ const Admin = () => {
       if (error) throw error;
       return data;
     },
-    enabled: !!user && isAdmin,
+    enabled: !!user && isAdmin && activeTab === "properties",
   });
 
   const { data: projects, isLoading: projectsLoading } = useQuery({
@@ -42,7 +42,7 @@ const Admin = () => {
       if (error) throw error;
       return data;
     },
-    enabled: !!user && isAdmin,
+    enabled: !!user && isAdmin && activeTab === "projects",
   });
 
   const { data: teamMembers, isLoading: teamLoading } = useQuery({
@@ -52,7 +52,7 @@ const Admin = () => {
       if (error) throw error;
       return data;
     },
-    enabled: !!user && isAdmin,
+    enabled: !!user && isAdmin && activeTab === "team",
   });
 
   const { data: messages, isLoading: messagesLoading } = useQuery({
@@ -62,7 +62,7 @@ const Admin = () => {
       if (error) throw error;
       return data;
     },
-    enabled: !!user && isAdmin,
+    enabled: !!user && isAdmin && activeTab === "messages",
   });
 
   const deleteMutation = useMutation({
