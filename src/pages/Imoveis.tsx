@@ -150,7 +150,7 @@ const Imoveis = () => {
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {properties.map((p, i) => (
-                  <div key={p.id} className="card-property cursor-pointer group">
+                  <Link key={p.id} to={`/imoveis/${p.id}`} className="card-property cursor-pointer group block">
                     <div className="aspect-[4/3] overflow-hidden relative">
                       <img
                         src={p.image_url || fallbackImages[i % fallbackImages.length]}
