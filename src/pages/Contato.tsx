@@ -82,7 +82,31 @@ const Contato = () => {
                   <Input placeholder="Assunto" value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} required />
                 </div>
                 <Textarea placeholder="Sua mensagem..." rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} required />
-                <Button type="submit" className="btn-gold w-full text-base py-3" disabled={sending}>
+
+                {/* Honeypot hidden field */}
+                <input
+                  ref={honeypotRef}
+                  type="text"
+                  name="website"
+                  autoComplete="off"
+                  tabIndex={-1}
+                  className="absolute opacity-0 h-0 w-0 pointer-events-none"
+                />
+
+                {/* Not a robot checkbox */}
+                <div className="flex items-center gap-3 p-4 rounded-lg border border-border bg-secondary">
+                  <Checkbox
+                    id="not-robot"
+                    checked={notRobot}
+                    onCheckedChange={(checked) => setNotRobot(checked === true)}
+                  />
+                  <label htmlFor="not-robot" className="flex items-center gap-2 text-sm text-foreground cursor-pointer select-none">
+                    <ShieldCheck className="h-4 w-4 text-accent" />
+                    Não sou um robô
+                  </label>
+                </div>
+
+                <Button type="submit" className="btn-gold w-full text-base py-3" disabled={sending || !notRobot}>
                   <Send className="h-4 w-4 mr-2" />
                   {sending ? "Enviando..." : "Enviar Mensagem"}
                 </Button>
