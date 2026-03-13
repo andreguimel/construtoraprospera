@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
-import { Plus, Pencil, Trash2, LogOut, Home, Settings, Building2, Users, MessageSquare, Eye, EyeOff } from "lucide-react";
+import { Plus, Pencil, Trash2, LogOut, Home, Settings, Building2, Users, MessageSquare, Eye, EyeOff, UserCog } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { Tables, TablesInsert } from "@/integrations/supabase/types";
 import PropertyForm from "@/components/admin/PropertyForm";
