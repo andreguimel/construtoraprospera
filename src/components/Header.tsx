@@ -31,7 +31,7 @@ const Header = () => {
     >
       <div className="container mx-auto flex items-center justify-between h-18 px-4 py-3">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="Prospera" className="h-12 w-auto" />
+          <img src={logo} alt="Prospera" className="h-16 w-auto" />
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -39,9 +39,7 @@ const Header = () => {
             <Link
               key={item.label}
               to={item.href}
-              className={`text-sm font-medium transition-colors duration-200 hover:text-accent ${
-                scrolled ? "text-foreground" : "text-primary-foreground/90"
-              }`}
+              className="text-sm font-medium transition-colors duration-200 text-white hover:text-white/80"
             >
               {item.label}
             </Link>
@@ -52,7 +50,7 @@ const Header = () => {
         </nav>
 
         <button
-          className={`md:hidden transition-colors ${scrolled ? "text-foreground" : "text-primary-foreground"}`}
+          className="md:hidden text-white transition-colors"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Menu"
         >
