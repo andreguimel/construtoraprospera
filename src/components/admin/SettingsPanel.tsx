@@ -124,12 +124,12 @@ const SettingsPanel = () => {
             <Field label="Título Principal" settingsKey="hero_title" />
             <Field label="Subtítulo" settingsKey="hero_subtitle" multiline />
             <div className="space-y-2">
-              <Label>Imagem de Fundo</Label>
+              <Label>Imagens de Fundo (carrossel)</Label>
               <ImageUploader
-                images={form.hero_image ? [form.hero_image] : []}
-                onChange={(imgs) => set("hero_image", imgs[0] || "")}
+                images={form.hero_images ? form.hero_images.split(",").map((u) => u.trim()).filter(Boolean) : []}
+                onChange={(imgs) => set("hero_images", imgs.join(","))}
               />
-              <p className="text-xs text-muted-foreground">Recomendado: imagem de alta resolução (1920x1080 ou maior)</p>
+              <p className="text-xs text-muted-foreground">Adicione múltiplas imagens para criar um carrossel automático. Recomendado: 1920x1080 ou maior.</p>
             </div>
           </>
         )}
