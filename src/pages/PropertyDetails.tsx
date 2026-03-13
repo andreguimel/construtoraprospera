@@ -74,8 +74,10 @@ const PropertyDetails = () => {
 
   const isTerrain = property.property_type === "terreno";
 
+  const priceText = property.hide_price ? "Sob consulta" : formatPrice(Number(property.price));
+
   const whatsappMessage = encodeURIComponent(
-    `Olá! Tenho interesse no imóvel "${property.title}" (${formatPrice(Number(property.price))}). Gostaria de mais informações.`
+    `Olá! Tenho interesse no imóvel "${property.title}"${property.hide_price ? "" : ` (${priceText})`}. Gostaria de mais informações.`
   );
 
   return (
