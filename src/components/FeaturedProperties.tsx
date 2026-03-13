@@ -61,9 +61,10 @@ const FeaturedProperties = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {properties.map((p, i) => (
-              <div
+              <Link
+                to={`/imoveis/${p.id}`}
                 key={p.id}
-                className={`card-property cursor-pointer group transition-all duration-700 ${
+                className={`card-property cursor-pointer group block transition-all duration-700 ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
                 style={{ transitionDelay: `${i * 150}ms` }}
