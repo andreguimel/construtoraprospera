@@ -9,6 +9,7 @@ export interface SiteSettings {
   address: string;
   hours: string;
   // Hero
+  hero_image: string;
   hero_title: string;
   hero_subtitle: string;
   // About
@@ -41,6 +42,7 @@ const defaults: SiteSettings = {
   email: "contato@prospera.com.br",
   address: "Rua das Flores, 123, São Paulo, SP",
   hours: "Seg–Sex: 9h às 18h | Sáb: 9h às 13h",
+  hero_image: "",
   hero_title: "Encontre ou Construa o imóvel dos seus sonhos",
   hero_subtitle: "Apartamentos, casas e coberturas nas melhores localizações do Brasil, com atendimento personalizado.",
   about_text_1: "A Prospera Imobiliária e Construtora é referência no mercado imobiliário, com anos de experiência realizando os sonhos de nossos clientes. Oferecemos um atendimento personalizado e dedicado para encontrar o imóvel perfeito para você.",

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useSiteSettings, SiteSettings } from "@/hooks/useSiteSettings";
+import ImageUploader from "./ImageUploader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -122,6 +123,14 @@ const SettingsPanel = () => {
           <>
             <Field label="Título Principal" settingsKey="hero_title" />
             <Field label="Subtítulo" settingsKey="hero_subtitle" multiline />
+            <div className="space-y-2">
+              <Label>Imagem de Fundo</Label>
+              <ImageUploader
+                images={form.hero_image ? [form.hero_image] : []}
+                onChange={(imgs) => set("hero_image", imgs[0] || "")}
+              />
+              <p className="text-xs text-muted-foreground">Recomendado: imagem de alta resolução (1920x1080 ou maior)</p>
+            </div>
           </>
         )}
 
