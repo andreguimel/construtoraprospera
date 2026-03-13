@@ -12,6 +12,8 @@ import PropertyDetails from "./pages/PropertyDetails.tsx";
 import Contato from "./pages/Contato.tsx";
 import Projetos from "./pages/Projetos.tsx";
 import ProjectDetails from "./pages/ProjectDetails.tsx";
+import Sobre from "./pages/Sobre.tsx";
+import Servicos from "./pages/Servicos.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import WhatsAppFloat from "./components/WhatsAppFloat.tsx";
 
