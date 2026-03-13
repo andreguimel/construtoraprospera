@@ -74,6 +74,8 @@ const PropertyForm = ({ property, onClose }: PropertyFormProps) => {
         furnished: form.furnished,
         featured: form.featured,
         active: form.active,
+        youtube_url: form.youtube_url || null,
+        instagram_url: form.instagram_url || null,
       };
 
       if (isEditing) {
