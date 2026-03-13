@@ -10,6 +10,8 @@ import Admin from "./pages/Admin.tsx";
 import Imoveis from "./pages/Imoveis.tsx";
 import PropertyDetails from "./pages/PropertyDetails.tsx";
 import Contato from "./pages/Contato.tsx";
+import Projetos from "./pages/Projetos.tsx";
+import ProjectDetails from "./pages/ProjectDetails.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import WhatsAppFloat from "./components/WhatsAppFloat.tsx";
 
@@ -28,6 +30,8 @@ const App = () => (
             <Route path="/imoveis" element={<Imoveis />} />
             <Route path="/imoveis/:id" element={<PropertyDetails />} />
             <Route path="/contato" element={<Contato />} />
+            <Route path="/projetos" element={<Projetos />} />
+            <Route path="/projetos/:id" element={<ProjectDetails />} />
             <Route path="/admin" element={<Admin />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

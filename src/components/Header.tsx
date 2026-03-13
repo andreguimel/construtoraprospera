@@ -6,6 +6,7 @@ import logo from "@/assets/prospera-logo.png";
 const navItems = [
   { label: "Início", href: "/" },
   { label: "Imóveis", href: "/imoveis" },
+  { label: "Projetos", href: "/projetos" },
   { label: "Serviços", href: "/servicos" },
   { label: "Sobre", href: "/sobre" },
   { label: "Contato", href: "/contato" },

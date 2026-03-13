@@ -41,6 +41,63 @@ export type Database = {
         }
         Relationships: []
       }
+      projects: {
+        Row: {
+          active: boolean | null
+          built_area: number | null
+          city: string | null
+          created_at: string
+          description: string | null
+          featured: boolean | null
+          id: string
+          image_url: string | null
+          images: string[] | null
+          location: string | null
+          project_type: Database["public"]["Enums"]["project_type"]
+          state: string | null
+          status: Database["public"]["Enums"]["project_status"]
+          title: string
+          updated_at: string
+          year: number | null
+        }
+        Insert: {
+          active?: boolean | null
+          built_area?: number | null
+          city?: string | null
+          created_at?: string
+          description?: string | null
+          featured?: boolean | null
+          id?: string
+          image_url?: string | null
+          images?: string[] | null
+          location?: string | null
+          project_type?: Database["public"]["Enums"]["project_type"]
+          state?: string | null
+          status?: Database["public"]["Enums"]["project_status"]
+          title: string
+          updated_at?: string
+          year?: number | null
+        }
+        Update: {
+          active?: boolean | null
+          built_area?: number | null
+          city?: string | null
+          created_at?: string
+          description?: string | null
+          featured?: boolean | null
+          id?: string
+          image_url?: string | null
+          images?: string[] | null
+          location?: string | null
+          project_type?: Database["public"]["Enums"]["project_type"]
+          state?: string | null
+          status?: Database["public"]["Enums"]["project_status"]
+          title?: string
+          updated_at?: string
+          year?: number | null
+        }
+        Relationships: []
+      }
       properties: {
         Row: {
           accepts_pets: boolean | null
@@ -176,6 +233,8 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "user"
+      project_status: "planejado" | "em_andamento" | "concluido"
+      project_type: "residencial" | "comercial" | "misto"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -304,6 +363,8 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "user"],
+      project_status: ["planejado", "em_andamento", "concluido"],
+      project_type: ["residencial", "comercial", "misto"],
     },
   },
 } as const
