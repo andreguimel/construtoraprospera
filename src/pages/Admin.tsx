@@ -92,7 +92,27 @@ const Admin = () => {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        {showForm ? (
+        {/* Tabs */}
+        <div className="flex gap-2 mb-6 border-b border-border pb-3">
+          <Button
+            variant={activeTab === "properties" ? "default" : "ghost"}
+            size="sm"
+            onClick={() => { setActiveTab("properties"); setShowForm(false); }}
+          >
+            Imóveis
+          </Button>
+          <Button
+            variant={activeTab === "settings" ? "default" : "ghost"}
+            size="sm"
+            onClick={() => { setActiveTab("settings"); setShowForm(false); }}
+          >
+            <Settings className="h-4 w-4 mr-1" /> Configurações
+          </Button>
+        </div>
+
+        {activeTab === "settings" ? (
+          <SettingsPanel />
+        ) : showForm ? (
           <PropertyForm property={editingProperty} onClose={handleFormClose} />
         ) : (
           <>
