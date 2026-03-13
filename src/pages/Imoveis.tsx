@@ -190,7 +190,7 @@ const Imoveis = () => {
                         Ver Detalhes
                       </span>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </>
