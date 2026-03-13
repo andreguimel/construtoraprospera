@@ -205,9 +205,9 @@ const Admin = () => {
             variant={activeTab === "messages" ? "default" : "ghost"}
             size="sm"
             onClick={() => { setActiveTab("messages"); setShowForm(false); }}
-            className="relative"
+            className="relative shrink-0"
           >
-            <MessageSquare className="h-4 w-4 mr-1" /> Mensagens
+            <MessageSquare className="h-4 w-4 md:mr-1" /> <span className="hidden md:inline">Mensagens</span>
             {messages && messages.filter((m) => !m.read).length > 0 && (
               <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-destructive text-destructive-foreground text-xs flex items-center justify-center">
                 {messages.filter((m) => !m.read).length}
