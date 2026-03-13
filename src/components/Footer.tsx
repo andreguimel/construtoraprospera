@@ -43,9 +43,7 @@ const Footer = () => {
           </div>
 
           <div className="flex items-start justify-center md:justify-end">
-            <div className="bg-[#152b47] p-3 rounded-lg">
-              <img src={logo} alt="Prospera" className="h-20 w-auto" />
-            </div>
+            <img src={logo} alt="Prospera" className="h-20 w-auto" />
           </div>
         </div>
       </div>
