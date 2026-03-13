@@ -44,6 +44,16 @@ const Admin = () => {
     enabled: !!user && isAdmin,
   });
 
+  const { data: teamMembers, isLoading: teamLoading } = useQuery({
+    queryKey: ["admin-team"],
+    queryFn: async () => {
+      const { data, error } = await supabase.from("team_members").select("*").order("display_order", { ascending: true });
+      if (error) throw error;
+      return data;
+    },
+    enabled: !!user && isAdmin,
+  });
+
   const deleteMutation = useMutation({
     mutationFn: async (id: string) => {
       const { error } = await supabase.from("properties").delete().eq("id", id);
