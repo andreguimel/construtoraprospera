@@ -23,6 +23,15 @@ const Contato = () => {
       toast({ title: "Preencha os campos obrigatórios", variant: "destructive" });
       return;
     }
+    if (!notRobot) {
+      toast({ title: "Confirme que você não é um robô", variant: "destructive" });
+      return;
+    }
+    // Honeypot check — if filled, silently reject
+    if (honeypotRef.current?.value) {
+      toast({ title: "Mensagem enviada!", description: "Entraremos em contato em breve." });
+      return;
+    }
     setSending(true);
     try {
       const { error } = await supabase.from("contact_messages").insert({
