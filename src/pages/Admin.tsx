@@ -176,35 +176,38 @@ const Admin = () => {
 
       <main className="container mx-auto px-4 py-8">
         {/* Tabs */}
-        <div className="flex gap-2 mb-6 border-b border-border pb-3">
+        <div className="flex gap-2 mb-6 border-b border-border pb-3 overflow-x-auto">
           <Button
             variant={activeTab === "properties" ? "default" : "ghost"}
             size="sm"
             onClick={() => { setActiveTab("properties"); setShowForm(false); }}
+            className="shrink-0"
           >
-            Imóveis
+            <Home className="h-4 w-4 md:mr-1" /> <span className="hidden md:inline">Imóveis</span>
           </Button>
           <Button
             variant={activeTab === "projects" ? "default" : "ghost"}
             size="sm"
             onClick={() => { setActiveTab("projects"); setShowForm(false); }}
+            className="shrink-0"
           >
-            <Building2 className="h-4 w-4 mr-1" /> Projetos
+            <Building2 className="h-4 w-4 md:mr-1" /> <span className="hidden md:inline">Projetos</span>
           </Button>
           <Button
             variant={activeTab === "team" ? "default" : "ghost"}
             size="sm"
             onClick={() => { setActiveTab("team"); setShowForm(false); }}
+            className="shrink-0"
           >
-            <Users className="h-4 w-4 mr-1" /> Equipe
+            <Users className="h-4 w-4 md:mr-1" /> <span className="hidden md:inline">Equipe</span>
           </Button>
           <Button
             variant={activeTab === "messages" ? "default" : "ghost"}
             size="sm"
             onClick={() => { setActiveTab("messages"); setShowForm(false); }}
-            className="relative"
+            className="relative shrink-0"
           >
-            <MessageSquare className="h-4 w-4 mr-1" /> Mensagens
+            <MessageSquare className="h-4 w-4 md:mr-1" /> <span className="hidden md:inline">Mensagens</span>
             {messages && messages.filter((m) => !m.read).length > 0 && (
               <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-destructive text-destructive-foreground text-xs flex items-center justify-center">
                 {messages.filter((m) => !m.read).length}
@@ -215,8 +218,9 @@ const Admin = () => {
             variant={activeTab === "settings" ? "default" : "ghost"}
             size="sm"
             onClick={() => { setActiveTab("settings"); setShowForm(false); }}
+            className="shrink-0"
           >
-            <Settings className="h-4 w-4 mr-1" /> Configurações
+            <Settings className="h-4 w-4 md:mr-1" /> <span className="hidden md:inline">Configurações</span>
           </Button>
         </div>
 

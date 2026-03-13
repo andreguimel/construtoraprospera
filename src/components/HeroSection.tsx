@@ -42,7 +42,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+    <section className="relative min-h-[70vh] md:min-h-[90vh] flex items-center overflow-hidden">
       {/* Slideshow background */}
       <div className="absolute inset-0">
         {heroImages.map((img, i) => (
@@ -59,11 +59,11 @@ const HeroSection = () => {
       </div>
 
       <div className="relative container mx-auto px-4 py-24">
-        <h1 className="text-4xl md:text-6xl font-display font-bold text-primary-foreground mb-4 max-w-2xl animate-fade-in-up leading-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-6xl font-display font-bold text-primary-foreground mb-4 max-w-2xl animate-fade-in-up leading-tight">
           {settings?.hero_title || "Encontre ou Construa o imóvel dos seus sonhos"}
         </h1>
 
-        <p className="text-lg md:text-xl text-primary-foreground/75 max-w-xl mb-10 animate-fade-in-up" style={{ animationDelay: "0.15s" }}>
+        <p className="text-base md:text-xl text-primary-foreground/75 max-w-xl mb-8 md:mb-10 animate-fade-in-up" style={{ animationDelay: "0.15s" }}>
           {settings?.hero_subtitle || "Apartamentos, casas e coberturas nas melhores localizações do Brasil, com atendimento personalizado."}
         </p>
 
