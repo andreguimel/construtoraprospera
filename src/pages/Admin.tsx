@@ -67,6 +67,19 @@ const Admin = () => {
     onError: (err: any) => toast({ title: "Erro ao excluir", description: err.message, variant: "destructive" }),
   });
 
+  const deleteTeamMutation = useMutation({
+    mutationFn: async (id: string) => {
+      const { error } = await supabase.from("team_members").delete().eq("id", id);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["admin-team"] });
+      queryClient.invalidateQueries({ queryKey: ["team-members"] });
+      toast({ title: "Membro excluído com sucesso" });
+    },
+    onError: (err: any) => toast({ title: "Erro ao excluir", description: err.message, variant: "destructive" }),
+  });
+
   const deleteProjectMutation = useMutation({
     mutationFn: async (id: string) => {
       const { error } = await supabase.from("projects").delete().eq("id", id);
