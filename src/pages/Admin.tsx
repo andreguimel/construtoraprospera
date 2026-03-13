@@ -127,6 +127,13 @@ const Admin = () => {
             Imóveis
           </Button>
           <Button
+            variant={activeTab === "projects" ? "default" : "ghost"}
+            size="sm"
+            onClick={() => { setActiveTab("projects"); setShowForm(false); }}
+          >
+            <Building2 className="h-4 w-4 mr-1" /> Projetos
+          </Button>
+          <Button
             variant={activeTab === "settings" ? "default" : "ghost"}
             size="sm"
             onClick={() => { setActiveTab("settings"); setShowForm(false); }}
