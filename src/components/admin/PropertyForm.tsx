@@ -230,6 +230,21 @@ const PropertyForm = ({ property, onClose }: PropertyFormProps) => {
           </div>
         </div>
 
+        {/* Links externos */}
+        <div>
+          <h3 className="text-lg font-semibold text-foreground mb-3">Links Externos</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label>Link do YouTube</Label>
+              <Input placeholder="https://youtube.com/watch?v=..." value={form.youtube_url} onChange={(e) => set("youtube_url", e.target.value)} />
+            </div>
+            <div className="space-y-2">
+              <Label>Link do Instagram</Label>
+              <Input placeholder="https://instagram.com/p/..." value={form.instagram_url} onChange={(e) => set("instagram_url", e.target.value)} />
+            </div>
+          </div>
+        </div>
+
         {/* Toggles */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="flex items-center gap-2">
