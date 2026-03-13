@@ -44,6 +44,7 @@ const Contato = () => {
       if (error) throw error;
       toast({ title: "Mensagem enviada!", description: "Entraremos em contato em breve." });
       setForm({ name: "", email: "", phone: "", subject: "", message: "" });
+      setNotRobot(false);
     } catch {
       toast({ title: "Erro ao enviar", description: "Tente novamente mais tarde.", variant: "destructive" });
     } finally {
