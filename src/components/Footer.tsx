@@ -9,6 +9,23 @@ const Footer = () => {
     <footer className="bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 py-14">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="flex items-start justify-center md:justify-start">
+            <img src={logo} alt="Prospera" className="h-20 w-auto" />
+          </div>
+
+          <div>
+            <h3 className="font-display font-bold text-lg mb-4">Receba Nossas Novidades</h3>
+            <p className="text-sm opacity-70 mb-4">Cadastre-se e fique por dentro das melhores oportunidades.</p>
+            <div className="flex gap-2">
+              <input
+                type="email"
+                placeholder="Digite seu e-mail"
+                className="flex-1 px-4 py-2.5 rounded-lg bg-primary-foreground/10 border border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 text-sm"
+              />
+              <button className="btn-gold text-sm px-4 py-2.5 rounded-lg">Cadastrar</button>
+            </div>
+          </div>
+
           <div>
             <h3 className="font-display font-bold text-lg mb-4">Encontre-nos</h3>
             <div className="space-y-3 text-sm opacity-80">
@@ -27,23 +44,6 @@ const Footer = () => {
                 <Phone className="h-4 w-4" />
               </a>
             </div>
-          </div>
-
-          <div>
-            <h3 className="font-display font-bold text-lg mb-4">Receba Nossas Novidades</h3>
-            <p className="text-sm opacity-70 mb-4">Cadastre-se e fique por dentro das melhores oportunidades.</p>
-            <div className="flex gap-2">
-              <input
-                type="email"
-                placeholder="Digite seu e-mail"
-                className="flex-1 px-4 py-2.5 rounded-lg bg-primary-foreground/10 border border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 text-sm"
-              />
-              <button className="btn-gold text-sm px-4 py-2.5 rounded-lg">Cadastrar</button>
-            </div>
-          </div>
-
-          <div className="flex items-start justify-center md:justify-end">
-            <img src={logo} alt="Prospera" className="h-20 w-auto" />
           </div>
         </div>
       </div>
