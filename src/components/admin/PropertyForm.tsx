@@ -9,6 +9,7 @@ import { Switch } from "@/components/ui/switch";
 import { toast } from "@/hooks/use-toast";
 import { ArrowLeft } from "lucide-react";
 import type { Tables } from "@/integrations/supabase/types";
+import ImageUploader from "./ImageUploader";
 
 interface PropertyFormProps {
   property: Tables<"properties"> | null;
@@ -36,6 +37,7 @@ const PropertyForm = ({ property, onClose }: PropertyFormProps) => {
     condominium_fee: property?.condominium_fee?.toString() ?? "",
     iptu: property?.iptu?.toString() ?? "",
     image_url: property?.image_url ?? "",
+    images: property?.images ?? [],
     accepts_pets: property?.accepts_pets ?? false,
     furnished: property?.furnished ?? false,
     featured: property?.featured ?? false,
@@ -62,7 +64,8 @@ const PropertyForm = ({ property, onClose }: PropertyFormProps) => {
         garage_spots: parseInt(form.garage_spots) || 0,
         condominium_fee: form.condominium_fee ? parseFloat(form.condominium_fee) : null,
         iptu: form.iptu ? parseFloat(form.iptu) : null,
-        image_url: form.image_url || null,
+        image_url: form.images[0] || form.image_url || null,
+        images: form.images.length > 0 ? form.images : null,
         accepts_pets: form.accepts_pets,
         furnished: form.furnished,
         featured: form.featured,
@@ -139,9 +142,12 @@ const PropertyForm = ({ property, onClose }: PropertyFormProps) => {
               <option value="rural">Rural</option>
             </select>
           </div>
-          <div className="space-y-2">
-            <Label>URL da imagem</Label>
-            <Input value={form.image_url} onChange={(e) => set("image_url", e.target.value)} placeholder="https://..." />
+          <div className="space-y-2 md:col-span-2">
+            <Label>Imagens do imóvel</Label>
+            <ImageUploader
+              images={form.images as string[]}
+              onChange={(imgs) => set("images", imgs)}
+            />
           </div>
         </div>
 
