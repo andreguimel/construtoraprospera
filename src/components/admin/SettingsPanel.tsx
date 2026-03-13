@@ -10,14 +10,13 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import { Save, Phone, Mail, MessageCircle, Home, FileText, Info, Globe } from "lucide-react";
 
-type Tab = "contato" | "hero" | "sobre" | "servicos" | "pagina_contato";
+type Tab = "contato" | "hero" | "sobre" | "servicos";
 
 const tabs: { key: Tab; label: string; icon: typeof Phone }[] = [
   { key: "contato", label: "Contato", icon: Phone },
   { key: "hero", label: "Hero / Início", icon: Home },
   { key: "sobre", label: "Sobre Nós", icon: Info },
   { key: "servicos", label: "Serviços", icon: FileText },
-  { key: "pagina_contato", label: "Pág. Contato", icon: Globe },
 ];
 
 const SettingsPanel = () => {
