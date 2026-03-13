@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
+import { useState, useRef } from "react";
+import { Phone, Mail, MapPin, Clock, Send, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "@/hooks/use-toast";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { supabase } from "@/integrations/supabase/client";
@@ -13,11 +14,22 @@ const Contato = () => {
   const { data: settings } = useSiteSettings();
   const [form, setForm] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
   const [sending, setSending] = useState(false);
+  const [notRobot, setNotRobot] = useState(false);
+  const honeypotRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
       toast({ title: "Preencha os campos obrigatórios", variant: "destructive" });
+      return;
+    }
+    if (!notRobot) {
+      toast({ title: "Confirme que você não é um robô", variant: "destructive" });
+      return;
+    }
+    // Honeypot check — if filled, silently reject
+    if (honeypotRef.current?.value) {
+      toast({ title: "Mensagem enviada!", description: "Entraremos em contato em breve." });
       return;
     }
     setSending(true);
@@ -32,6 +44,7 @@ const Contato = () => {
       if (error) throw error;
       toast({ title: "Mensagem enviada!", description: "Entraremos em contato em breve." });
       setForm({ name: "", email: "", phone: "", subject: "", message: "" });
+      setNotRobot(false);
     } catch {
       toast({ title: "Erro ao enviar", description: "Tente novamente mais tarde.", variant: "destructive" });
     } finally {
@@ -69,7 +82,31 @@ const Contato = () => {
                   <Input placeholder="Assunto" value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} required />
                 </div>
                 <Textarea placeholder="Sua mensagem..." rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} required />
-                <Button type="submit" className="btn-gold w-full text-base py-3" disabled={sending}>
+
+                {/* Honeypot hidden field */}
+                <input
+                  ref={honeypotRef}
+                  type="text"
+                  name="website"
+                  autoComplete="off"
+                  tabIndex={-1}
+                  className="absolute opacity-0 h-0 w-0 pointer-events-none"
+                />
+
+                {/* Not a robot checkbox */}
+                <div className="flex items-center gap-3 p-4 rounded-lg border border-border bg-secondary">
+                  <Checkbox
+                    id="not-robot"
+                    checked={notRobot}
+                    onCheckedChange={(checked) => setNotRobot(checked === true)}
+                  />
+                  <label htmlFor="not-robot" className="flex items-center gap-2 text-sm text-foreground cursor-pointer select-none">
+                    <ShieldCheck className="h-4 w-4 text-accent" />
+                    Não sou um robô
+                  </label>
+                </div>
+
+                <Button type="submit" className="btn-gold w-full text-base py-3" disabled={sending || !notRobot}>
                   <Send className="h-4 w-4 mr-2" />
                   {sending ? "Enviando..." : "Enviar Mensagem"}
                 </Button>
