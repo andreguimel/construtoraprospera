@@ -126,8 +126,16 @@ const PropertyForm = ({ property, onClose }: PropertyFormProps) => {
             <Textarea value={form.description} onChange={(e) => set("description", e.target.value)} rows={3} />
           </div>
           <div className="space-y-2">
-            <Label>Preço (R$) *</Label>
-            <Input type="number" step="0.01" value={form.price} onChange={(e) => set("price", e.target.value)} required />
+            <div className="flex items-center gap-2 mb-2">
+              <Switch checked={form.hide_price} onCheckedChange={(v) => set("hide_price", v)} />
+              <Label>Sob consulta (não mostrar preço)</Label>
+            </div>
+            {!form.hide_price && (
+              <>
+                <Label>Preço (R$) *</Label>
+                <Input type="number" step="0.01" value={form.price} onChange={(e) => set("price", e.target.value)} required />
+              </>
+            )}
           </div>
           <div className="space-y-2">
             <Label>Tipo de transação</Label>

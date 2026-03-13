@@ -105,7 +105,7 @@ const PropertyDetails = () => {
 
             {/* Price & badges */}
             <div className="flex flex-wrap items-center gap-4">
-              <p className="text-3xl font-bold text-accent">{formatPrice(Number(property.price))}</p>
+              <p className="text-3xl font-bold text-accent">{priceText}</p>
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-accent text-accent-foreground capitalize">
                 {property.transaction_type}
               </span>
