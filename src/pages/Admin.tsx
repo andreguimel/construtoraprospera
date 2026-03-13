@@ -24,7 +24,7 @@ const Admin = () => {
   const [editingProject, setEditingProject] = useState<any>(null);
   const [editingMember, setEditingMember] = useState<any>(null);
   const [showForm, setShowForm] = useState(false);
-  const [activeTab, setActiveTab] = useState<"properties" | "projects" | "team" | "messages" | "settings">("properties");
+  const [activeTab, setActiveTab] = useState<"properties" | "projects" | "team" | "messages" | "settings" | "users">("properties");
 
   const { data: properties, isLoading } = useQuery({
     queryKey: ["admin-properties"],
