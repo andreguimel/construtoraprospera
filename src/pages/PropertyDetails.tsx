@@ -18,6 +18,7 @@ const formatPrice = (price: number) =>
 
 const PropertyDetails = () => {
   const { id } = useParams<{ id: string }>();
+  const { data: settings } = useSiteSettings();
 
   const { data: property, isLoading, error } = useQuery({
     queryKey: ["property-detail", id],
