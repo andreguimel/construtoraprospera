@@ -150,7 +150,7 @@ const Imoveis = () => {
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {properties.map((p, i) => (
-                  <div key={p.id} className="card-property cursor-pointer group">
+                  <Link key={p.id} to={`/imoveis/${p.id}`} className="card-property cursor-pointer group block">
                     <div className="aspect-[4/3] overflow-hidden relative">
                       <img
                         src={p.image_url || fallbackImages[i % fallbackImages.length]}
@@ -186,11 +186,11 @@ const Imoveis = () => {
                           <span className="flex items-center gap-1"><Maximize2 className="h-3.5 w-3.5" />Pronto para construir</span>
                         </div>
                       )}
-                      <Link to={`/imoveis/${p.id}`} className="block w-full mt-4 py-2.5 rounded-lg border border-accent text-accent text-sm font-semibold text-center transition-all duration-300 hover:bg-accent hover:text-accent-foreground">
+                      <span className="block w-full mt-4 py-2.5 rounded-lg border border-accent text-accent text-sm font-semibold text-center transition-all duration-300 group-hover:bg-accent group-hover:text-accent-foreground">
                         Ver Detalhes
-                      </Link>
+                      </span>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </>

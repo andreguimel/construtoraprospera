@@ -61,9 +61,10 @@ const FeaturedProperties = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {properties.map((p, i) => (
-              <div
+              <Link
+                to={`/imoveis/${p.id}`}
                 key={p.id}
-                className={`card-property cursor-pointer group transition-all duration-700 ${
+                className={`card-property cursor-pointer group block transition-all duration-700 ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
                 style={{ transitionDelay: `${i * 150}ms` }}
@@ -103,11 +104,11 @@ const FeaturedProperties = () => {
                       <span className="flex items-center gap-1"><Maximize2 className="h-3.5 w-3.5" />Pronto para construir</span>
                     </div>
                   )}
-                  <Link to={`/imoveis/${p.id}`} className="block w-full mt-4 py-2.5 rounded-lg border border-accent text-accent text-sm font-semibold text-center transition-all duration-300 hover:bg-accent hover:text-accent-foreground">
+                  <span className="block w-full mt-4 py-2.5 rounded-lg border border-accent text-accent text-sm font-semibold text-center transition-all duration-300 group-hover:bg-accent group-hover:text-accent-foreground">
                     Ver Detalhes
-                  </Link>
+                  </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         )}
