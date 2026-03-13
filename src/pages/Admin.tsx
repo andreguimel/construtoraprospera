@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -17,6 +17,7 @@ import SettingsPanel from "@/components/admin/SettingsPanel";
 
 const Admin = () => {
   const { user, isAdmin, loading, signOut } = useAuth();
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [editingProperty, setEditingProperty] = useState<Tables<"properties"> | null>(null);
   const [editingProject, setEditingProject] = useState<any>(null);
@@ -131,7 +132,7 @@ const Admin = () => {
       <div className="text-center space-y-4">
         <h1 className="text-2xl font-bold text-foreground">Acesso negado</h1>
         <p className="text-muted-foreground">Você não tem permissão de administrador.</p>
-        <Button variant="outline" onClick={signOut}>Sair</Button>
+        <Button variant="outline" onClick={async () => { await signOut(); navigate("/auth"); }}>Sair</Button>
       </div>
     </div>
   );
