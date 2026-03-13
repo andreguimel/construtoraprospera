@@ -1,7 +1,10 @@
 import { Phone, Mail, MapPin, Instagram, Facebook } from "lucide-react";
 import logo from "@/assets/prospera-logo.png";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 const Footer = () => {
+  const { data: settings } = useSiteSettings();
+
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 py-14">
@@ -9,18 +12,18 @@ const Footer = () => {
           <div>
             <h3 className="font-display font-bold text-lg mb-4">Encontre-nos</h3>
             <div className="space-y-3 text-sm opacity-80">
-              <p className="flex items-center gap-2"><Phone className="h-4 w-4" /> (11) 1234-5678</p>
-              <p className="flex items-center gap-2"><Mail className="h-4 w-4" /> contato@prospera.com.br</p>
-              <p className="flex items-center gap-2"><MapPin className="h-4 w-4" /> Rua das Flores, 123, São Paulo, SP</p>
+              <p className="flex items-center gap-2"><Phone className="h-4 w-4" /> {settings?.phone || "(11) 1234-5678"}</p>
+              <p className="flex items-center gap-2"><Mail className="h-4 w-4" /> {settings?.email || "contato@prospera.com.br"}</p>
+              <p className="flex items-center gap-2"><MapPin className="h-4 w-4" /> {settings?.address || "Rua das Flores, 123, São Paulo, SP"}</p>
             </div>
             <div className="flex gap-3 mt-5">
-              <a href="#" className="w-10 h-10 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 flex items-center justify-center hover:bg-accent hover:border-accent transition-all duration-300">
+              <a href={settings?.instagram_url || "#"} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 flex items-center justify-center hover:bg-accent hover:border-accent transition-all duration-300">
                 <Instagram className="h-4 w-4" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 flex items-center justify-center hover:bg-accent hover:border-accent transition-all duration-300">
+              <a href={settings?.facebook_url || "#"} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 flex items-center justify-center hover:bg-accent hover:border-accent transition-all duration-300">
                 <Facebook className="h-4 w-4" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 flex items-center justify-center hover:bg-accent hover:border-accent transition-all duration-300" aria-label="WhatsApp">
+              <a href={`https://wa.me/${settings?.whatsapp || "5500000000000"}`} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 flex items-center justify-center hover:bg-accent hover:border-accent transition-all duration-300" aria-label="WhatsApp">
                 <Phone className="h-4 w-4" />
               </a>
             </div>
@@ -48,7 +51,7 @@ const Footer = () => {
       </div>
 
       <div className="border-t border-primary-foreground/10 py-4">
-        <p className="text-center text-xs opacity-60">© 2025 Prospera Imobiliária. Todos os direitos reservados.</p>
+        <p className="text-center text-xs opacity-60">© 2025 Prospera Imobiliária e Construtora. Todos os direitos reservados.</p>
       </div>
     </footer>
   );
