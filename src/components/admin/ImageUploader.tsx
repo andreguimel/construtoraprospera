@@ -65,7 +65,7 @@ const ImageUploader = ({ images, onChange }: ImageUploaderProps) => {
     <div className="space-y-3">
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
         {images.map((url, i) => (
-          <div key={i} className="relative group aspect-video rounded-lg overflow-hidden border border-border bg-muted">
+          <div key={i} className="relative group aspect-[4/3] rounded-lg overflow-hidden border border-border bg-muted">
             <img src={url} alt={`Imagem ${i + 1}`} className="w-full h-full object-cover" />
             <button
               type="button"
@@ -82,7 +82,7 @@ const ImageUploader = ({ images, onChange }: ImageUploaderProps) => {
           </div>
         ))}
 
-        <label className="aspect-video rounded-lg border-2 border-dashed border-border hover:border-primary/50 bg-muted/50 flex flex-col items-center justify-center cursor-pointer transition-colors">
+        <label className="aspect-[4/3] rounded-lg border-2 border-dashed border-border hover:border-primary/50 bg-muted/50 flex flex-col items-center justify-center cursor-pointer transition-colors">
           <ImagePlus className="h-6 w-6 text-muted-foreground mb-1" />
           <span className="text-xs text-muted-foreground">Adicionar</span>
           <input
@@ -96,6 +96,10 @@ const ImageUploader = ({ images, onChange }: ImageUploaderProps) => {
           />
         </label>
       </div>
+
+      <p className="text-xs text-muted-foreground">
+        <strong>Recomendado:</strong> Card 800x600px (4:3) | Galeria 1200x900px | Máx 1920x1440px. Formato JPG/WebP, até 1MB por imagem.
+      </p>
 
       {uploading && (
         <div className="space-y-1">

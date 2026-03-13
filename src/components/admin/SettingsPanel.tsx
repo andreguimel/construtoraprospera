@@ -131,7 +131,10 @@ const SettingsPanel = () => {
                 images={form.hero_images ? form.hero_images.split(",").map((u) => u.trim()).filter(Boolean) : []}
                 onChange={(imgs) => set("hero_images", imgs.join(","))}
               />
-              <p className="text-xs text-muted-foreground">Adicione múltiplas imagens para criar um carrossel automático. Recomendado: 1920x1080 ou maior.</p>
+              <p className="text-xs text-muted-foreground">
+                <strong>Tamanho recomendado: 1920 x 1080px (16:9)</strong> — mínimo 1920px de largura. 
+                Formato JPG ou WebP, até 2MB por imagem. Adicione múltiplas imagens para criar um carrossel automático.
+              </p>
             </div>
           </>
         )}
