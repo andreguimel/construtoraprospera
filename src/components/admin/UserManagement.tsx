@@ -154,7 +154,7 @@ const UserManagement = () => {
                       <td className="px-4 py-3 font-medium text-foreground">
                         <div className="flex items-center gap-2">
                           {u.full_name || "—"}
-                          {isSuperAdmin && <ShieldCheck className="h-4 w-4 text-accent" title="Super Admin" />}
+                          {isSuperAdmin && <ShieldCheck className="h-4 w-4 text-accent" />}
                         </div>
                       </td>
                       <td className="px-4 py-3 text-muted-foreground">{u.email}</td>
