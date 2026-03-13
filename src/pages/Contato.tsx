@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
+import { useState, useRef } from "react";
+import { Phone, Mail, MapPin, Clock, Send, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "@/hooks/use-toast";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { supabase } from "@/integrations/supabase/client";
@@ -13,6 +14,8 @@ const Contato = () => {
   const { data: settings } = useSiteSettings();
   const [form, setForm] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
   const [sending, setSending] = useState(false);
+  const [notRobot, setNotRobot] = useState(false);
+  const honeypotRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
