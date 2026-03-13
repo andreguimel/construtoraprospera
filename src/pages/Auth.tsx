@@ -8,11 +8,9 @@ import { toast } from "@/hooks/use-toast";
 import logo from "@/assets/prospera-logo.png";
 
 const Auth = () => {
-  const { user, loading, signIn, signUp } = useAuth();
-  const [isLogin, setIsLogin] = useState(true);
+  const { user, loading, signIn } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [fullName, setFullName] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
   if (loading) return <div className="min-h-screen flex items-center justify-center bg-background"><p className="text-muted-foreground">Carregando...</p></div>;
@@ -21,19 +19,9 @@ const Auth = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-
-    if (isLogin) {
-      const { error } = await signIn(email, password);
-      if (error) {
-        toast({ title: "Erro ao entrar", description: error.message, variant: "destructive" });
-      }
-    } else {
-      const { error } = await signUp(email, password, fullName);
-      if (error) {
-        toast({ title: "Erro ao cadastrar", description: error.message, variant: "destructive" });
-      } else {
-        toast({ title: "Conta criada!", description: "Verifique seu email para confirmar o cadastro." });
-      }
+    const { error } = await signIn(email, password);
+    if (error) {
+      toast({ title: "Erro ao entrar", description: error.message, variant: "destructive" });
     }
     setSubmitting(false);
   };
@@ -47,19 +35,13 @@ const Auth = () => {
 
         <div className="bg-card rounded-lg p-8 shadow-lg border border-border">
           <h1 className="text-2xl font-bold text-foreground text-center mb-1" style={{ fontFamily: "var(--font-display)" }}>
-            {isLogin ? "Acesso Administrativo" : "Criar Conta"}
+            Acesso Administrativo
           </h1>
           <p className="text-muted-foreground text-center text-sm mb-6">
-            {isLogin ? "Entre com suas credenciais" : "Preencha os dados para criar sua conta"}
+            Entre com suas credenciais
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            {!isLogin && (
-              <div className="space-y-2">
-                <Label htmlFor="fullName">Nome completo</Label>
-                <Input id="fullName" value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="Seu nome" required />
-              </div>
-            )}
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="seu@email.com" required />
@@ -70,16 +52,9 @@ const Auth = () => {
             </div>
 
             <Button type="submit" className="w-full" disabled={submitting}>
-              {submitting ? "Aguarde..." : isLogin ? "Entrar" : "Criar conta"}
+              {submitting ? "Aguarde..." : "Entrar"}
             </Button>
           </form>
-
-          <p className="text-center text-sm text-muted-foreground mt-4">
-            {isLogin ? "Não tem conta?" : "Já tem conta?"}{" "}
-            <button onClick={() => setIsLogin(!isLogin)} className="text-accent font-medium hover:underline">
-              {isLogin ? "Cadastre-se" : "Faça login"}
-            </button>
-          </p>
         </div>
       </div>
     </div>
