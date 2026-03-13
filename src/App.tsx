@@ -10,6 +10,8 @@ import Admin from "./pages/Admin.tsx";
 import Imoveis from "./pages/Imoveis.tsx";
 import PropertyDetails from "./pages/PropertyDetails.tsx";
 import Contato from "./pages/Contato.tsx";
+import Projetos from "./pages/Projetos.tsx";
+import ProjectDetails from "./pages/ProjectDetails.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import WhatsAppFloat from "./components/WhatsAppFloat.tsx";
 
