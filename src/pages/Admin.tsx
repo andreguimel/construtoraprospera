@@ -18,8 +18,9 @@ const Admin = () => {
   const { user, isAdmin, loading, signOut } = useAuth();
   const queryClient = useQueryClient();
   const [editingProperty, setEditingProperty] = useState<Tables<"properties"> | null>(null);
+  const [editingProject, setEditingProject] = useState<any>(null);
   const [showForm, setShowForm] = useState(false);
-  const [activeTab, setActiveTab] = useState<"properties" | "settings">("properties");
+  const [activeTab, setActiveTab] = useState<"properties" | "projects" | "settings">("properties");
 
   const { data: properties, isLoading } = useQuery({
     queryKey: ["admin-properties"],
