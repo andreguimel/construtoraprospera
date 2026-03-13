@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import heroImg from "@/assets/hero-building.jpg";
 import { Search, ChevronDown } from "lucide-react";
@@ -12,6 +12,26 @@ const HeroSection = () => {
   const [type, setType] = useState("");
   const [city, setCity] = useState("");
   const [bedrooms, setBedrooms] = useState("");
+  const [current, setCurrent] = useState(0);
+
+  // Parse hero images from comma-separated string or single URL
+  const heroImages: string[] = (() => {
+    const raw = settings?.hero_images || "";
+    if (!raw) return [heroImg];
+    const urls = raw.split(",").map((u) => u.trim()).filter(Boolean);
+    return urls.length > 0 ? urls : [heroImg];
+  })();
+
+  const nextSlide = useCallback(() => {
+    setCurrent((c) => (c + 1) % heroImages.length);
+  }, [heroImages.length]);
+
+  // Auto-slide every 6 seconds
+  useEffect(() => {
+    if (heroImages.length <= 1) return;
+    const interval = setInterval(nextSlide, 6000);
+    return () => clearInterval(interval);
+  }, [heroImages.length, nextSlide]);
 
   const handleSearch = () => {
     const params = new URLSearchParams();
@@ -22,9 +42,19 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-[90vh] flex items-center">
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+      {/* Slideshow background */}
       <div className="absolute inset-0">
-        <img src={settings?.hero_image || heroImg} alt="Edifício moderno" className="w-full h-full object-cover" />
+        {heroImages.map((img, i) => (
+          <img
+            key={img + i}
+            src={img}
+            alt="Hero"
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+              i === current ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
       </div>
 
@@ -77,6 +107,21 @@ const HeroSection = () => {
           </button>
         </div>
       </div>
+
+      {/* Slide indicators */}
+      {heroImages.length > 1 && (
+        <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-2">
+          {heroImages.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                i === current ? "bg-accent w-8" : "bg-primary-foreground/40 hover:bg-primary-foreground/60"
+              }`}
+            />
+          ))}
+        </div>
+      )}
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
         <ChevronDown className="h-8 w-8 text-primary-foreground/50" />
