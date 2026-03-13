@@ -218,8 +218,9 @@ const Admin = () => {
             variant={activeTab === "settings" ? "default" : "ghost"}
             size="sm"
             onClick={() => { setActiveTab("settings"); setShowForm(false); }}
+            className="shrink-0"
           >
-            <Settings className="h-4 w-4 mr-1" /> Configurações
+            <Settings className="h-4 w-4 md:mr-1" /> <span className="hidden md:inline">Configurações</span>
           </Button>
         </div>
 
