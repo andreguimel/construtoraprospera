@@ -1,9 +1,11 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 import aboutImg from "@/assets/about-building.jpg";
 import coupleImg from "@/assets/couple-browsing.jpg";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, User } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Sobre = () => {
