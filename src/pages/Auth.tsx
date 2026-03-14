@@ -54,7 +54,19 @@ const Auth = () => {
               <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" required minLength={6} />
             </div>
 
-            <Button type="submit" className="w-full" disabled={submitting}>
+            <div className="flex items-center gap-3 p-4 rounded-lg border border-border bg-secondary">
+              <Checkbox
+                id="not-robot"
+                checked={notRobot}
+                onCheckedChange={(checked) => setNotRobot(checked === true)}
+              />
+              <label htmlFor="not-robot" className="flex items-center gap-2 text-sm text-foreground cursor-pointer select-none">
+                <ShieldCheck className="h-4 w-4 text-accent" />
+                Não sou um robô
+              </label>
+            </div>
+
+            <Button type="submit" className="w-full" disabled={submitting || !notRobot}>
               {submitting ? "Aguarde..." : "Entrar"}
             </Button>
           </form>
