@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import { ShieldCheck } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import logo from "@/assets/prospera-logo.png";
 
@@ -12,6 +14,7 @@ const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [notRobot, setNotRobot] = useState(false);
 
   if (loading) return <div className="min-h-screen flex items-center justify-center bg-background"><p className="text-muted-foreground">Carregando...</p></div>;
   if (user) return <Navigate to="/admin" replace />;
@@ -51,7 +54,19 @@ const Auth = () => {
               <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" required minLength={6} />
             </div>
 
-            <Button type="submit" className="w-full" disabled={submitting}>
+            <div className="flex items-center gap-3 p-4 rounded-lg border border-border bg-secondary">
+              <Checkbox
+                id="not-robot"
+                checked={notRobot}
+                onCheckedChange={(checked) => setNotRobot(checked === true)}
+              />
+              <label htmlFor="not-robot" className="flex items-center gap-2 text-sm text-foreground cursor-pointer select-none">
+                <ShieldCheck className="h-4 w-4 text-accent" />
+                Não sou um robô
+              </label>
+            </div>
+
+            <Button type="submit" className="w-full" disabled={submitting || !notRobot}>
               {submitting ? "Aguarde..." : "Entrar"}
             </Button>
           </form>
